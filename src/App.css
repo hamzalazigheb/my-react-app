@@ -14,39 +14,41 @@ body, html {
 }
 
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  background: #1A2A44;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   padding: 1rem 2rem;
-  display: flex;
-  justify-content: center;
-  z-index: 100;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border: 2px solid #D4AF37;
-  max-width: 1200px;
-  margin: 10px auto;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(26, 42, 68, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.at-footer {
   background: #1A2A44;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .nav-group {
   display: flex;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-group.left {
@@ -62,34 +64,33 @@ body, html {
 }
 
 .nav-links a {
-  color: #fff;
+  color: #D4AF37;
   text-decoration: none;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1rem;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-links a {
+  color: #fff;
 }
 
 .nav-links a:hover {
-  color: #D4AF37;
+  color: #fff;
 }
 
 /* Logo styles */
 .logo-container {
-  padding: 0 2rem;
+  margin: 0 2rem;
 }
 
 .logo {
   height: 50px;
   width: auto;
-  filter: drop-shadow(0 0 5px #D4AF37);
-  animation: pulseGlow 2s ease-in-out infinite alternate;
   transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Dropdown styles */
@@ -98,98 +99,64 @@ body, html {
 }
 
 .dropdown-arrow {
-  margin-left: 5px;
-  font-size: 0.8rem;
+  font-size: 0.8em;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
 .dropdown-menu {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: #1A2A44;
-  min-width: 180px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  list-style: none;
+  background: rgba(26, 42, 68, 0.95);
+  backdrop-filter: blur(10px);
+  min-width: 200px;
   padding: 0.5rem 0;
-  margin: 0;
   border-radius: 5px;
-  border: 1px solid #D4AF37;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
-.dropdown:hover .dropdown-menu,
 .dropdown-menu.active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.dropdown-menu li a {
-  color: #fff;
-  padding: 0.5rem 1rem;
-  display: block;
-  text-transform: none;
+.dropdown-menu li {
+  padding: 0;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
   color: #D4AF37;
-  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-@keyframes pulseGlow {
-  from {
-    filter: drop-shadow(0 0 5px #D4AF37);
-  }
-  to {
-    filter: drop-shadow(0 0 10px #D4AF37);
-  }
+.dropdown-menu a:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: #fff;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile styles */
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
-    margin: 0;
-    border-radius: 0;
-  }
-
-  .nav-links {
-    flex-direction: column;
     padding: 1rem;
   }
 
   .nav-group {
-    flex-direction: column;
-    width: 100%;
     gap: 1rem;
   }
 
-  .nav-group.left,
-  .nav-group.right {
-    margin: 0;
-  }
-
   .logo-container {
-    order: -1;
-    padding: 1rem 0;
+    margin: 0 1rem;
   }
 
-  .dropdown-menu {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
+  .logo {
+    height: 40px;
   }
 }
 
@@ -290,5 +257,139 @@ body, html {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* Home Page Styles */
+.home-container {
+  padding: 2rem;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.home-header h1 {
+  color: #1A2A44;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.home-header p {
+  color: #666;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Blogs Section Styles */
+.blogs-section {
+  margin-top: 3rem;
+}
+
+.blogs-section h2 {
+  color: #1A2A44;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card-content {
+  padding: 1.5rem;
+}
+
+.blog-card h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.blog-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.blog-category {
+  background-color: #D4AF37;
+  color: #1A2A44;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.blog-date {
+  color: #666;
+}
+
+.blog-excerpt {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  background-color: #1A2A44;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  background-color: #D4AF37;
+  color: #1A2A44;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1rem;
+  }
+
+  .home-header h1 {
+    font-size: 2rem;
+  }
+
+  .home-header p {
+    font-size: 1rem;
+  }
+
+  .blogs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    margin: 0 1rem;
   }
 }
