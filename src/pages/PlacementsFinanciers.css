@@ -1,0 +1,139 @@
+.placements-financiers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 80vh;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(to right, #1A2A44, #2A3A54);
+  border-radius: 10px;
+  color: white;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #D4AF37;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.content-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  color: #333;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-card h3 {
+  color: #1A2A44;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #D4AF37;
+}
+
+.service-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(to right, #1A2A44, #2A3A54);
+  border-radius: 10px;
+  color: white;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #D4AF37;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  background-color: #D4AF37;
+  color: #1A2A44;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.cta-button:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .placements-financiers-container {
+    padding: 1rem;
+  }
+
+  .page-header {
+    padding: 1.5rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-section {
+    padding: 2rem 1rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+} 
