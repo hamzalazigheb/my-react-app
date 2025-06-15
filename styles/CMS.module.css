@@ -1,0 +1,568 @@
+.cmsContainer {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userInfo span {
+  color: #4a5568;
+}
+
+.logoutButton {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: #c53030;
+}
+
+.mainContent {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.welcomeSection {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.welcomeSection h2 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.welcomeSection p {
+  color: #4a5568;
+  font-size: 1.1rem;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.dashboardCard {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboardCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboardCard h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboardCard p {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.cardButton {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.cardButton:hover {
+  background-color: #3182ce;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.loadingSpinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.authContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.authBox {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.authBox h1 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.authBox p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+}
+
+.loginButton {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+  background-color: #3182ce;
+}
+
+.loginForm {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.errorMessage {
+  background-color: #fff5f5;
+  color: #e53e3e;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .userInfo {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    padding: 0 1rem;
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.searchBar {
+  margin-bottom: 2rem;
+}
+
+.searchBar input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.searchBar input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+.contactsList {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contactsList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contactsList th,
+.contactsList td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.contactsList th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.contactsList tr {
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.contactsList tr:hover {
+  background-color: #f8fafc;
+}
+
+.contactsList tr.selected {
+  background-color: #ebf8ff;
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.contactDetails {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.contactDetails h2 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.detailsContent {
+  margin-bottom: 1.5rem;
+}
+
+.detailsContent p {
+  margin: 0.75rem 0;
+  color: #4a5568;
+}
+
+.detailsContent strong {
+  color: #2d3748;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.actionButton:first-child {
+  background-color: #4299e1;
+  color: white;
+}
+
+.actionButton:last-child {
+  background-color: #48bb78;
+  color: white;
+}
+
+.actionButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .contactDetails {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactsList {
+    overflow-x: auto;
+  }
+
+  .contactsList table {
+    min-width: 800px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.searchBar {
+  margin: 20px 0;
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.searchBar input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contactsList {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contactsList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contactsList th,
+.contactsList td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.contactsList th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.contactsList tr:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.contactsList tr.selected {
+  background-color: #e3f2fd;
+}
+
+.deleteButton {
+  padding: 6px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.contactDetails {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.contactDetails h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detailsContent p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.detailsContent strong {
+  color: #666;
+  margin-right: 10px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.emailButton,
+.callButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.emailButton {
+  background-color: #28a745;
+}
+
+.emailButton:hover {
+  background-color: #218838;
+}
+
+.callButton {
+  background-color: #007bff;
+}
+
+.callButton:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .contactsList {
+    overflow-x: auto;
+  }
+
+  .contactsList table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .emailButton,
+  .callButton {
+    text-align: center;
+  }
+} 

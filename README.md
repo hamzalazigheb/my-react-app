@@ -1,68 +1,88 @@
-# Azalée Patrimoine Website
+# Azalée Patrimoine - Application Web
 
-A modern website for Azalée Patrimoine, featuring a dynamic content management system and responsive design.
+## Description
+Application web de gestion de patrimoine développée avec Next.js, offrant des services de conseil en investissement, gestion de patrimoine et optimisation fiscale.
 
-## Features
+## Structure du Projet
 
-- Responsive design with modern UI/UX
-- Dynamic content management system (CMS)
-- Blog management
-- Service showcase
-- Contact forms
-- Interactive navigation
-- Mobile-friendly interface
+### Pages Principales
+- `/pages/index.js` - Page d'accueil
+- `/pages/contact.js` - Page de contact
+- `/pages/reduire-vos-impots.js` - Services de réduction d'impôts
+- `/pages/proteger-vos-proches.js` - Protection patrimoniale
+- `/pages/outils-pedagogiques.js` - Ressources éducatives
+- `/pages/gestion-patrimoine-sur-mesure.js` - Gestion personnalisée
+- `/pages/solutions-projets.js` - Solutions d'investissement
+- `/pages/audit-patrimonial.js` - Audit patrimonial
 
-## Technologies Used
+### Composants
+- `/components/Navbar.js` - Navigation principale
+- `/components/Footer.js` - Pied de page
+- `/components/ChatBot.js` - Assistant virtuel
+- `/components/InvestmentChatBot.js` - Assistant spécialisé investissement
+- `/components/CarouselBand.js` - Carrousel d'images
 
-- React.js
-- React Router
-- CSS3 with modern features
-- Local Storage for data persistence
-- Responsive design principles
+### Styles
+- `/styles/globals.css` - Styles globaux
+- Modules CSS pour chaque page (ex: `ReduireImpots.module.css`)
 
-## Getting Started
+## Dépendances Principales
+- **Next.js** (^14.1.0) - Framework React
+- **React** (^18.2.0) - Bibliothèque UI
+- **Prisma** (^6.8.2) - ORM pour la base de données
+- **NextAuth** (^4.24.11) - Authentification
+- **bcryptjs** (^3.0.2) - Hachage des mots de passe
 
-1. Clone the repository:
-```bash
-git clone [your-repository-url]
-```
+## Scripts Disponibles
+- `npm run dev` - Démarre le serveur de développement
+- `npm run build` - Crée une version de production
+- `npm run start` - Démarre le serveur de production
+- `npm run lint` - Vérifie le code avec ESLint
 
-2. Install dependencies:
-```bash
-npm install
-```
+## Configuration
+- **Next.js** : Configuration dans `next.config.js`
+  - Mode strict React activé
+  - Support des images distantes
+- **ESLint** : Configuration étendue avec `next/core-web-vitals`
+- **Browsers** : Support des navigateurs modernes en production et développement
 
-3. Start the development server:
-```bash
-npm start
-```
+## Fonctionnalités
+1. **Gestion de Patrimoine**
+   - Audit patrimonial
+   - Solutions d'investissement
+   - Optimisation fiscale
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Outils Pédagogiques**
+   - Ressources éducatives
+   - Guides d'investissement
+   - Calculateurs financiers
 
-## Project Structure
+3. **Interface Interactive**
+   - Chatbot d'investissement
+   - Formulaires de contact
+   - Carrousel d'informations
 
-- `/src` - Source files
-  - `/components` - Reusable components
-  - `/pages` - Page components
-  - `/assets` - Static assets
-  - `/styles` - CSS files
+4. **Administration**
+   - Interface d'administration
+   - Gestion des utilisateurs
+   - Suivi des demandes
 
-## CMS Features
+## Installation
+1. Cloner le repository
+2. Installer les dépendances : `npm install`
+3. Configurer les variables d'environnement
+4. Lancer le serveur de développement : `npm run dev`
 
-- Content management for all pages
-- Blog post management
-- Service updates
-- Navigation menu management
-- Dynamic content editing
+## Déploiement
+1. Créer une version de production : `npm run build`
+2. Démarrer le serveur : `npm run start`
 
-## Contributing
+## Contribution
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Licence
+Propriétaire - Tous droits réservés

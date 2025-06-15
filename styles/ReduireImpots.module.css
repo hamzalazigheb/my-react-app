@@ -1,0 +1,473 @@
+/* Conteneur principal de la page */
+.protegerProches {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 120px;
+}
+
+/* Section héro avec dégradé de fond */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 5%;
+  background: #1A2A44;
+  color: #fff;
+  margin-bottom: 40px;
+  border-radius: 0 0 20px 20px;
+}
+
+.heroContent {
+  flex: 1;
+  padding-right: 40px;
+  text-align: left;
+}
+
+.heroImageContainer {
+  flex-shrink: 0;
+  width: 250px;
+  height: 250px;
+  background: none;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}
+
+.heroImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Style du titre principal */
+.hero h1 {
+  font-size: 3rem;
+  color: #D4AF37;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Style du paragraphe de la section héro */
+.hero p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  max-width: 800px;
+  line-height: 1.4;
+}
+
+/* Style des sections de contenu */
+.section {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  margin: 30px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Style des titres de section */
+.section h2 {
+  color: #1A2A44;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #D4AF37;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Style des listes de dispositifs et pièges */
+.situationsGrid,
+.solutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+/* Style des cartes de dispositifs */
+.situationCard,
+.solutionCard {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+/* Animation au survol des cartes */
+.situationCard:hover,
+.solutionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des titres des cartes */
+.situationCard h3,
+.solutionCard h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* Style du texte des cartes */
+.situationCard p,
+.solutionCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Style des notes d'information */
+.note {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin: 30px 0;
+  border-left: 4px solid #D4AF37;
+}
+
+.note h3 {
+  color: #1A2A44;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Grille des dispositifs de défiscalisation */
+.enjeuxGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+/* Style des cartes de dispositifs */
+.enjeux,
+.reponses {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+/* Animation au survol des cartes */
+.enjeux:hover,
+.reponses:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des titres des cartes */
+.enjeux h3,
+.reponses h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* Style des listes de dispositifs et pièges */
+.enjeux ul,
+.reponses ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style des éléments de liste */
+.enjeux li,
+.reponses li {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+/* Style des puces de liste */
+.enjeux li::before,
+.reponses li::before {
+  content: '→';
+  color: #D4AF37;
+  position: absolute;
+  left: 0;
+}
+
+/* Style des processus de défiscalisation */
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+/* Style des cartes de processus */
+.processCard {
+  text-align: left;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Animation au survol des cartes */
+.processCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des icônes des cartes */
+.processIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Style des titres des cartes */
+.processCard h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* Style du texte des cartes */
+.processCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Conteneur du formulaire */
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Style du titre du formulaire */
+.formContainer h3 {
+  color: #1A2A44;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Espacement du formulaire */
+.estimationForm {
+  margin-top: 2rem;
+}
+
+/* Style des groupes de champs */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+/* Style des labels */
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1A2A44;
+  font-size: 1.1rem;
+}
+
+/* Style des champs de formulaire */
+.formGroup select,
+.formGroup input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid rgba(26, 42, 68, 0.2);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1A2A44;
+  background: white;
+}
+
+/* Style des champs au focus */
+.formGroup select:focus,
+.formGroup input:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Style du bouton de soumission */
+.submitButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #D4AF37;
+  color: #1A2A44;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Animation du bouton au survol */
+.submitButton:hover {
+  background: #1A2A44;
+  color: #D4AF37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(26, 42, 68, 0.2);
+}
+
+/* Section CTA (Call to Action) */
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+/* Style du titre CTA */
+.cta h2 {
+  color: #D4AF37;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Style du paragraphe CTA */
+.cta p {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Style du bouton CTA */
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #D4AF37;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #D4AF37 0%, #B38F2A 100%);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #B38F2A 0%, #D4AF37 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Animation du bouton CTA au survol */
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.ctaButton:hover::before {
+  opacity: 0;
+}
+
+.ctaButton:hover::after {
+  opacity: 1;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .heroContent {
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .heroImageContainer {
+    width: 200px;
+    height: 200px;
+  }
+
+  .section {
+    padding: 30px;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  .situationsGrid,
+  .solutionsGrid,
+  .enjeuxGrid,
+  .processGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .protegerProches {
+    padding: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  .cta {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 300px;
+  }
+} 

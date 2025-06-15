@@ -76,6 +76,8 @@ function CMS() {
 
   useEffect(() => {
     localStorage.setItem('websiteContent', JSON.stringify(content));
+    // Dispatch a custom event to notify other components about content changes
+    window.dispatchEvent(new CustomEvent('contentUpdated', { detail: content }));
   }, [content]);
 
   const handleEdit = (section, field, index = null) => {
