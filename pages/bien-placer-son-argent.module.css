@@ -1,0 +1,373 @@
+.protegerProches {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 120px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 5%;
+  background: #1A2A44;
+  color: #fff;
+  margin-bottom: 40px;
+  border-radius: 0 0 20px 20px;
+}
+
+.heroContent {
+  flex: 1;
+  padding-right: 40px;
+  text-align: left;
+}
+
+.heroImageContainer {
+  flex-shrink: 0;
+  width: 250px;
+  height: 250px;
+  background: none;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}
+
+.heroImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #D4AF37;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  max-width: 800px;
+  line-height: 1.4;
+}
+
+.section {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  margin: 30px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section h2 {
+  color: #1A2A44;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #D4AF37;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.situationsGrid,
+.solutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.situationCard,
+.solutionCard {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.situationCard:hover,
+.solutionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.situationIcon,
+.solutionIcon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.situationCard h3,
+.solutionCard h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.situationCard p,
+.solutionCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.note {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin: 30px 0;
+  border-left: 4px solid #D4AF37;
+}
+
+.note h3 {
+  color: #1A2A44;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.enjeuxGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.enjeux,
+.reponses {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.enjeux:hover,
+.reponses:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.enjeux h3,
+.reponses h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.enjeux ul,
+.reponses ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.enjeux li,
+.reponses li {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.enjeux li::before,
+.reponses li::before {
+  content: '→';
+  color: #D4AF37;
+  position: absolute;
+  left: 0;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.processCard {
+  text-align: left;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.processCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.processIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.processCard h3 {
+  color: #1A2A44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.processCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+.cta h2 {
+  color: #D4AF37;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.cta p {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #D4AF37;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #D4AF37 0%, #B38F2A 100%);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #B38F2A 0%, #D4AF37 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.ctaButton:hover::before {
+  opacity: 0;
+}
+
+.ctaButton:hover::after {
+  opacity: 1;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    padding: 60px 20px;
+  }
+
+  .heroContent {
+    padding-right: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .heroImageContainer {
+    width: 200px;
+    height: 200px;
+  }
+
+  .section {
+    padding: 30px;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  .situationsGrid,
+  .solutionsGrid,
+  .enjeuxGrid,
+  .processGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .protegerProches {
+    padding: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .section {
+    padding: 25px;
+    margin: 20px auto;
+  }
+
+  .cta {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+} 

@@ -1,0 +1,416 @@
+.auditPatrimonial {
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  color: #1A2A44;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.heroContent h2 {
+  font-size: 2rem;
+  color: #1A2A44;
+  margin-bottom: 30px;
+}
+
+.heroContent p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.heroImageContainer {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  animation: float 3s ease-in-out infinite;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.section {
+  padding: 60px 20px;
+  margin-bottom: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.section:nth-of-type(even) {
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.section h2 {
+  color: #1A2A44;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.section p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.auditAdvantage p {
+  margin-bottom: 15px;
+}
+
+.componentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.componentCard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.componentCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.componentCard h3 {
+  color: #1A2A44;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.componentCard p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.componentCard ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.componentCard li {
+  color: #555;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.componentCard li:before {
+  content: '✓';
+  color: #D4AF37;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.objective {
+  font-weight: bold;
+  color: #D4AF37;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 8px;
+}
+
+.auditWhy ul {
+  list-style: none;
+  padding: 0;
+}
+
+.auditWhy li {
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #555;
+}
+
+.auditWhy li:before {
+  content: "\2022";
+  color: #D4AF37;
+  position: absolute;
+  left: 0;
+}
+
+.auditFormSection {
+  padding: 60px 0;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.auditFormSection h2,
+.auditFormSection h3 {
+  text-align: center;
+}
+
+.auditForm h3 {
+  text-align: center;
+  color: #1A2A44;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+.auditForm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1A2A44;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: calc(100% - 20px);
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+}
+
+.formGroup textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+  font-size: 1rem;
+  color: #555;
+}
+
+.checkboxGroup input[type="checkbox"] {
+  width: auto;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  padding: 15px 25px;
+  background: #D4AF37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 30px;
+}
+
+.submitButton:hover {
+  background: #c19b2e;
+  transform: translateY(-3px);
+}
+
+.auditCtaSection {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.auditCtaSection h2 {
+  color: #D4AF37;
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+}
+
+.auditCtaSection p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+}
+
+.auditCtaSection blockquote {
+  font-style: italic;
+  margin: 40px auto;
+  padding: 20px;
+  border-left: 5px solid #D4AF37;
+  background: rgba(255, 255, 255, 0.15);
+  max-width: 700px;
+  border-radius: 8px;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 15px 35px;
+  background: #D4AF37;
+  color: #1A2A44;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 768px) {
+  .auditPatrimonial {
+    padding: 0 15px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+
+  .heroContent {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+
+  .heroImageContainer {
+    width: 250px;
+    height: 250px;
+    margin-top: 30px;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .sectionContent h2 {
+    font-size: 2rem;
+  }
+
+  .componentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .auditForm {
+    padding: 25px;
+  }
+
+  .submitButton {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  .auditCtaSection {
+    padding: 50px 15px;
+  }
+
+  .auditCtaSection h2 {
+    font-size: 2rem;
+  }
+
+  .auditCtaSection p {
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+}
+
+@media (min-width: 769px) {
+  .hero {
+    flex-direction: row;
+    text-align: left;
+    padding: 80px 40px;
+  }
+
+  .heroContent {
+    padding-right: 40px;
+  }
+
+  .heroImageContainer {
+    margin-left: 40px;
+  }
+} 

@@ -1,139 +1,110 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ChatBot.css';
 import logo1 from '../assets/logo1.png';
 
 const FiscalChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showChatBot, setShowChatBot] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
     name: '',
     situation: '',
-    income: '',
-    propertyOwner: '',
-    investments: '',
-    children: '',
-    goals: []
+    revenus: '',
+    objectif: '',
+    patrimoine: ''
   });
   const [messages, setMessages] = useState([
-    { 
-      text: "Bonjour ! Je suis Claire, votre experte en optimisation fiscale. Je vais vous aider à identifier les meilleures solutions pour votre situation. Pour commencer, quel est votre nom ?",
-      sender: 'bot'
-    }
+    { text: "Bonjour ! Je suis Sarah, votre assistante spécialisée en optimisation fiscale. Je vais vous aider à découvrir nos solutions. Puis-je avoir votre nom ?", sender: 'bot' }
   ]);
   const [inputMessage, setInputMessage] = useState('');
+  const [isConversationComplete, setIsConversationComplete] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowChatBot(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const conversationSteps = [
     {
-      question: "Merci ! Quelle est votre situation professionnelle ?",
+      question: "Quelle est votre situation familiale actuelle ?",
       field: 'situation',
       options: [
-        "Salarié",
-        "Chef d'entreprise",
-        "Profession libérale",
-        "Retraité",
+        "Célibataire",
+        "Marié(e)",
+        "Pacsé(e)",
+        "Divorcé(e)",
+        "Veuf/Veuve"
+      ]
+    },
+    {
+      question: "Quelle est votre tranche d'imposition approximative ?",
+      field: 'revenus',
+      options: [
+        "Tranche 0-11%",
+        "Tranche 11-30%",
+        "Tranche 30-41%",
+        "Tranche 41-45%",
+        "Je préfère ne pas le dire"
+      ]
+    },
+    {
+      question: "Quel est votre objectif principal en termes d'optimisation fiscale ?",
+      field: 'objectif',
+      options: [
+        "Réduire mon imposition",
+        "Optimiser la transmission de mon patrimoine",
+        "Investir dans l'immobilier",
+        "Protéger mes actifs",
         "Autre"
       ]
     },
     {
-      question: "Dans quelle tranche de revenus annuels vous situez-vous ?",
-      field: 'income',
+      question: "Quel est votre patrimoine approximatif ?",
+      field: 'patrimoine',
       options: [
-        "Moins de 30 000€",
-        "30 000€ - 50 000€",
-        "50 000€ - 100 000€",
-        "100 000€ - 150 000€",
-        "Plus de 150 000€"
+        "Moins de 100 000€",
+        "100 000€ - 500 000€",
+        "500 000€ - 1 000 000€",
+        "Plus de 1 000 000€",
+        "Je préfère ne pas le dire"
       ]
-    },
-    {
-      question: "Êtes-vous propriétaire de biens immobiliers ?",
-      field: 'propertyOwner',
-      options: [
-        "Oui, ma résidence principale",
-        "Oui, des biens locatifs",
-        "Oui, les deux",
-        "Non"
-      ]
-    },
-    {
-      question: "Avez-vous déjà des investissements ?",
-      field: 'investments',
-      options: [
-        "Assurance-vie",
-        "PEA",
-        "SCPI",
-        "Investissements locatifs",
-        "Aucun pour le moment"
-      ]
-    },
-    {
-      question: "Avez-vous des enfants ?",
-      field: 'children',
-      options: [
-        "Non",
-        "1 enfant",
-        "2 enfants",
-        "3 enfants ou plus"
-      ]
-    },
-    {
-      question: "Quels sont vos objectifs principaux en matière d'optimisation fiscale ? (Plusieurs choix possibles)",
-      field: 'goals',
-      options: [
-        "Réduire mon impôt sur le revenu",
-        "Optimiser la transmission de mon patrimoine",
-        "Défiscaliser via l'immobilier",
-        "Préparer ma retraite",
-        "Protéger ma famille"
-      ],
-      multiple: true
     }
   ];
 
-  const getFiscalRecommendations = (info) => {
-    let recommendations = [];
-
-    // Based on income
-    if (parseInt(info.income) > 100000) {
-      recommendations.push("Compte tenu de vos revenus élevés, nous recommandons une stratégie de défiscalisation immobilière (PINEL, LMNP) combinée à des placements en assurance-vie.");
-    }
-
-    // Based on property ownership
-    if (info.propertyOwner.includes("locatifs")) {
-      recommendations.push("En tant que propriétaire de biens locatifs, nous pouvons optimiser votre fiscalité immobilière et étudier les opportunités de réduction d'impôts via des travaux de rénovation.");
-    }
-
-    // Based on children
-    if (info.children !== "Non") {
-      recommendations.push("La présence d'enfants ouvre droit à des avantages fiscaux spécifiques. Nous pouvons explorer les solutions d'épargne études et de transmission patrimoniale.");
-    }
-
-    // Based on professional situation
-    if (info.situation === "Chef d'entreprise" || info.situation === "Profession libérale") {
-      recommendations.push("Votre statut professionnel permet d'accéder à des solutions spécifiques comme l'épargne retraite Madelin ou la création de société civile.");
-    }
-
-    return recommendations;
+  const resetConversation = () => {
+    setCurrentStep(0);
+    setUserInfo({
+      name: '',
+      situation: '',
+      revenus: '',
+      objectif: '',
+      patrimoine: ''
+    });
+    setMessages([
+      { text: "Bonjour ! Je suis Sarah, votre assistante spécialisée en optimisation fiscale. Je vais vous aider à découvrir nos solutions. Puis-je avoir votre nom ?", sender: 'bot' }
+    ]);
+    setInputMessage('');
+    setIsConversationComplete(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputMessage.trim() || e.target === null) {
-      const message = e.target === null ? inputMessage : inputMessage.trim();
-      
+    if (inputMessage.trim()) {
       // Add user message
-      const userMessage = { text: message, sender: 'user' };
+      const userMessage = { text: inputMessage, sender: 'user' };
       setMessages(prev => [...prev, userMessage]);
 
       // Process the response based on current step
       if (currentStep === 0) {
         // Handle name input
-        setUserInfo(prev => ({ ...prev, name: message }));
+        setUserInfo(prev => ({ ...prev, name: inputMessage }));
         setTimeout(() => {
           setMessages(prev => [...prev, {
             text: conversationSteps[0].question,
-            sender: 'bot',
-            options: conversationSteps[0].options
+            sender: 'bot'
           }]);
         }, 1000);
         setCurrentStep(1);
@@ -141,45 +112,30 @@ const FiscalChatBot = () => {
         const step = conversationSteps[currentStep - 1];
         
         // Store the answer
-        if (step.multiple) {
-          setUserInfo(prev => ({
-            ...prev,
-            [step.field]: [...(prev[step.field] || []), message]
-          }));
-        } else {
-          setUserInfo(prev => ({ ...prev, [step.field]: message }));
-        }
+        setUserInfo(prev => ({ ...prev, [step.field]: inputMessage }));
 
         // Send next question or conclude
         setTimeout(() => {
           if (currentStep < conversationSteps.length) {
             const nextQuestion = conversationSteps[currentStep];
-            setMessages(prev => [...prev, {
+            let botMessage = {
               text: nextQuestion.question,
-              sender: 'bot',
-              options: nextQuestion.options,
-              multiple: nextQuestion.multiple
-            }]);
-          } else {
-            // Generate recommendations
-            const recommendations = getFiscalRecommendations(userInfo);
+              sender: 'bot'
+            };
             
-            // Send conclusion messages
-            setMessages(prev => [
-              ...prev,
-              {
-                text: `Merci pour ces informations, ${userInfo.name}. Voici nos recommandations personnalisées :`,
-                sender: 'bot'
-              },
-              ...recommendations.map(rec => ({
-                text: rec,
-                sender: 'bot'
-              })),
-              {
-                text: "Un de nos experts en optimisation fiscale vous contactera dans les 24h pour approfondir ces pistes et élaborer votre stratégie personnalisée.",
-                sender: 'bot'
-              }
-            ]);
+            // Add options if they exist
+            if (nextQuestion.options) {
+              botMessage.options = nextQuestion.options;
+            }
+            
+            setMessages(prev => [...prev, botMessage]);
+          } else {
+            // Conclude conversation with tax-specific message
+            setMessages(prev => [...prev, {
+              text: `Merci ${userInfo.name} ! En fonction de votre profil, nos experts en optimisation fiscale pourront vous proposer des solutions adaptées à votre situation. Un conseiller spécialisé vous contactera prochainement pour discuter des opportunités d'optimisation fiscale qui correspondent à vos objectifs.`,
+              sender: 'bot'
+            }]);
+            setIsConversationComplete(true);
           }
         }, 1000);
         
@@ -191,7 +147,7 @@ const FiscalChatBot = () => {
   };
 
   return (
-    <div className={`chatbot ${isOpen ? 'open' : ''}`}>
+    <div className={`chatbot ${isOpen ? 'open' : ''} ${showChatBot ? 'visible' : ''}`}>
       <div className="chatbot-toggle" onClick={() => setIsOpen(!isOpen)}>
         <i className={`fas ${isOpen ? 'fa-times' : 'fa-comments'}`}></i>
       </div>
@@ -199,7 +155,7 @@ const FiscalChatBot = () => {
       <div className="chatbot-container">
         <div className="chatbot-header">
           <img src={logo1} alt="Azalée Patrimoine" className="chatbot-logo" />
-          <h3>Expert Fiscal Azalée</h3>
+          <h3>Assistant Optimisation Fiscale</h3>
         </div>
         
         <div className="chatbot-messages">
@@ -224,19 +180,28 @@ const FiscalChatBot = () => {
               )}
             </div>
           ))}
+          {isConversationComplete && (
+            <div className="restart-conversation">
+              <button onClick={resetConversation} className="restart-button">
+                Commencer une nouvelle conversation
+              </button>
+            </div>
+          )}
         </div>
         
-        <form onSubmit={handleSubmit} className="chatbot-input">
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Écrivez votre message..."
-          />
-          <button type="submit">
-            <i className="fas fa-paper-plane"></i>
-          </button>
-        </form>
+        {!isConversationComplete && (
+          <form onSubmit={handleSubmit} className="chatbot-input">
+            <input
+              type="text"
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              placeholder="Écrivez votre message..."
+            />
+            <button type="submit">
+              <i className="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

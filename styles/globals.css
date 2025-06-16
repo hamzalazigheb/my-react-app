@@ -1,0 +1,1358 @@
+/* Styles de réinitialisation et de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #ffffff;
+}
+
+/* Styles du conteneur de page */
+.page-container {
+  min-height: calc(100vh - 80px);
+  background: transparent;
+}
+
+/* Styles des sections de contenu */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Styles des titres de section */
+.content-section h1 {
+  font-size: 2.5rem;
+  color: #1A2A44;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+/* Ligne décorative sous les titres */
+.content-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #D4AF37;
+}
+
+/* Styles des sous-titres */
+.content-section h2 {
+  font-size: 2rem;
+  color: #1A2A44;
+  margin: 2rem 0 1rem;
+}
+
+/* Styles des paragraphes */
+.content-section p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Styles de la barre de navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(26, 42, 68, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles de la navbar lors du défilement */
+.navbar.scrolled {
+  background: rgba(26, 42, 68, 0.98);
+  height: 90px;
+  padding: 1rem 3rem;
+}
+
+/* Styles de la navbar près du footer */
+.navbar.at-footer {
+  background: #1A2A44;
+  height: 90px;
+  padding: 1rem 3rem;
+}
+
+/* Conteneur de la navbar */
+.navbar-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, auto) 1fr;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+/* Section gauche de la navbar */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+/* Section centrale de la navbar */
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Section droite de la navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+
+/* Liste des liens de navigation */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Groupe de liens de navigation */
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Styles des liens de navigation */
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  position: relative;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* Effet de soulignement des liens */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
+}
+
+/* Effet de survol des liens */
+.nav-links a:hover {
+  color: #D4AF37;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Styles du logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 200px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Styles de l'image du logo */
+.logo {
+  height: 85px;
+  width: auto;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* Taille du logo lors du défilement */
+.navbar.scrolled .logo {
+  height: 65px;
+}
+
+/* Effet de survol du logo */
+.logo-container:hover .logo {
+  filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2));
+  transform: scale(1.05);
+}
+
+/* Effet de clic sur le logo */
+.logo-container:active .logo {
+  transform: scale(0.98);
+  filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.1));
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 1400px) {
+  .navbar-left {
+    padding-right: 3rem;
+  }
+
+  .navbar-right {
+    padding-left: 3rem;
+  }
+
+  .nav-group {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 2rem 2rem;
+  }
+
+  .navbar.scrolled {
+    padding: 1rem 2rem;
+  }
+
+  .navbar-left {
+    padding-right: 2rem;
+  }
+
+  .navbar-right {
+    padding-left: 2rem;
+  }
+
+  .nav-group {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .navbar-center {
+    position: relative;
+  }
+}
+
+/* Styles des menus déroulants */
+.dropdown {
+  position: relative;
+}
+
+/* Styles de la flèche déroulante */
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+  margin-left: 0.3rem;
+  color: #D4AF37;
+}
+
+/* Animation de la flèche au survol */
+.dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Styles du menu déroulant */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  min-width: 280px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* Styles du menu déroulant actif */
+.dropdown-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Styles des éléments du menu déroulant */
+.dropdown-menu li {
+  list-style: none;
+  margin: 0.5rem 0;
+}
+
+/* Styles des liens du menu déroulant */
+.dropdown-menu a {
+  color: #1A2A44;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Styles du dernier élément du menu */
+.dropdown-menu li:last-child a {
+  margin-bottom: 0;
+}
+
+/* Effet de survol des liens du menu */
+.dropdown-menu a:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+}
+
+/* Indicateur de sélection des liens */
+.dropdown-menu a::before {
+  content: '';
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D4AF37;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Effet de survol de l'indicateur */
+.dropdown-menu a:hover::before {
+  opacity: 1;
+}
+
+/* Media queries pour les menus déroulants */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    transform: none;
+    border-radius: 0;
+    padding: 1rem;
+    background: #1A2A44;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .dropdown-menu a {
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+}
+
+/* Hero Section Styles */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(26, 42, 68, 0.85) 0%, rgba(44, 62, 80, 0.85) 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero .cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.hero .cta-button {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.hero .cta-button.primary {
+  background: #D4AF37;
+  color: white;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.hero .cta-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .hero .cta-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Styles de la section expérience */
+.experience-section {
+  padding: 6rem 2rem;
+  background: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fond décoratif de la section expérience */
+.experience-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(26, 42, 68, 0.05) 0%, rgba(44, 62, 80, 0.05) 100%);
+  z-index: 0;
+}
+
+/* Contenu de la section expérience */
+.experience-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Texte de la section expérience */
+.experience-text {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Titre de la section expérience */
+.experience-text h2 {
+  font-size: 2.5rem;
+  color: #1A2A44;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Sous-titre de la section expérience */
+.experience-text h3 {
+  font-size: 1.5rem;
+  color: #D4AF37;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Paragraphe de la section expérience */
+.experience-text p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Liste des expériences */
+.experience-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Éléments de la liste des expériences */
+.experience-list li {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  list-style: none;
+}
+
+/* Effet de survol des éléments */
+.experience-list li:hover {
+  transform: translateY(-5px);
+}
+
+/* Indicateur des éléments */
+.experience-list li::before {
+  content: '✓';
+  color: #D4AF37;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* Styles de la section vision */
+.vision-section {
+  padding: 6rem 2rem;
+  background: white;
+  position: relative;
+}
+
+/* Contenu de la section vision */
+.vision-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Titre de la section vision */
+.vision-content h2 {
+  font-size: 2.5rem;
+  color: #1A2A44;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Ligne décorative sous le titre */
+.vision-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #D4AF37;
+}
+
+/* Paragraphe principal de la section vision */
+.vision-content > p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+/* Grille des cartes de vision */
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Styles des cartes de vision */
+.vision-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Délai d'animation pour la deuxième carte */
+.vision-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+/* Délai d'animation pour la troisième carte */
+.vision-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+/* Effet de survol des cartes */
+.vision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre des cartes */
+.vision-card h3 {
+  font-size: 1.5rem;
+  color: #1A2A44;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+/* Ligne décorative sous les titres des cartes */
+.vision-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
+}
+
+/* Effet de survol de la ligne décorative */
+.vision-card:hover h3::after {
+  width: 100px;
+}
+
+/* Paragraphe des cartes */
+.vision-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 768px) {
+  .experience-section,
+  .vision-section {
+    padding: 4rem 1rem;
+  }
+
+  .experience-text h3,
+  .vision-content h2 {
+    font-size: 2rem;
+  }
+
+  .experience-text p,
+  .vision-content > p {
+    font-size: 1rem;
+  }
+
+  .experience-list li {
+    padding: 1.5rem;
+  }
+
+  .vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Animation de fondu vers le haut */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styles de la section des fonctionnalités */
+.features {
+  padding: 6rem 2rem;
+}
+
+/* Grille des fonctionnalités */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cartes des fonctionnalités */
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Effet de survol des cartes */
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre des cartes */
+.feature-card h3 {
+  color: #1A2A44;
+  margin-bottom: 1rem;
+}
+
+/* Paragraphe des cartes */
+.feature-card p {
+  color: #666;
+}
+
+/* Styles de la section carrousel */
+.carousel-band {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+/* Conteneur du carrousel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styles des slides */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Styles du slide actif */
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Contenu du carrousel */
+.carousel-content {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+/* Animation du contenu du slide actif */
+.carousel-slide.active .carousel-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Texte du carrousel */
+.carousel-text {
+  color: white;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s ease 0.2s;
+}
+
+/* Animation du texte du slide actif */
+.carousel-slide.active .carousel-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Image du carrousel */
+.carousel-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s ease 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation de l'image du slide actif */
+.carousel-slide.active .carousel-image {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Effet de survol de l'image */
+.carousel-image:hover {
+  transform: scale(1.02);
+}
+
+/* Styles de l'image */
+.carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Indicateurs du carrousel */
+.carousel-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+}
+
+/* Styles des indicateurs */
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0;
+}
+
+/* Effet de survol des indicateurs */
+.indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Styles de l'indicateur actif */
+.indicator.active {
+  background: #D4AF37;
+}
+
+/* Effet de l'indicateur actif */
+.indicator.active::before {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+/* Effet de survol de l'indicateur */
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Effet de survol de l'indicateur */
+.indicator:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Media queries pour le carrousel */
+@media (max-width: 1024px) {
+  .carousel-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .carousel-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-band {
+    height: auto;
+    min-height: 500px;
+  }
+
+  .carousel-container {
+    height: 100%;
+  }
+
+  .carousel-content {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .carousel-text {
+    text-align: center;
+  }
+
+  .carousel-text h2 {
+    font-size: 2rem;
+  }
+
+  .carousel-text p {
+    font-size: 1rem;
+  }
+
+  .carousel-image {
+    height: 250px;
+    margin-top: 2rem;
+  }
+
+  .carousel-image:hover {
+    transform: none;
+  }
+}
+
+/* Styles du bouton CTA du carrousel */
+.carousel-cta {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #D4AF37;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Effet de survol du bouton CTA */
+.carousel-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #D4AF37 0%, #B38F2A 100%);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+/* Effet de survol du bouton CTA */
+.carousel-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #B38F2A 0%, #D4AF37 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Effet de survol du bouton CTA */
+.carousel-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Effet de survol du bouton CTA */
+.carousel-cta:hover::before {
+  opacity: 0;
+}
+
+/* Effet de survol du bouton CTA */
+.carousel-cta:hover::after {
+  opacity: 1;
+}
+
+/* Effet de clic sur le bouton CTA */
+.carousel-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Media queries pour le bouton CTA */
+@media (max-width: 768px) {
+  .carousel-cta {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Chatbot Styles */
+.chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: 'Arial', sans-serif;
+}
+
+.chatbot-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1A2A44;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.1);
+  background-color: #D4AF37;
+}
+
+.chatbot-container {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatbot-header {
+  background: #1A2A44;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #D4AF37;
+}
+
+.chatbot-header p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f8f9fa;
+}
+
+.message {
+  margin-bottom: 15px;
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+
+.message.bot {
+  background: #1A2A44;
+  color: white;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+.message.user {
+  background: #D4AF37;
+  color: #1A2A44;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message p + p {
+  margin-top: 8px;
+}
+
+.chatbot-input {
+  padding: 15px;
+  background: white;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.chatbot-input input:focus {
+  border-color: #1A2A44;
+}
+
+.chatbot-input button {
+  padding: 12px 20px;
+  background: #1A2A44;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.chatbot-input button:hover {
+  background: #D4AF37;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .chatbot-container {
+    width: calc(100% - 40px);
+    height: calc(100% - 100px);
+    bottom: 80px;
+    right: 20px;
+  }
+  
+  .chatbot-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+/* Investment Options Styles */
+.investment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(26, 42, 68, 0.05);
+  border-radius: 12px;
+}
+
+.investment-option-button {
+  padding: 12px 20px;
+  background: white;
+  border: 2px solid #1A2A44;
+  color: #1A2A44;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.investment-option-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.investment-option-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.investment-option-button:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 42, 68, 0.15);
+}
+
+.investment-option-button:hover::before {
+  opacity: 1;
+}
+
+.investment-option-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(26, 42, 68, 0.1);
+}
+
+/* Responsive Design for Investment Options */
+@media (max-width: 480px) {
+  .investment-options {
+    padding: 8px;
+  }
+
+  .investment-option-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Contact Form Styles */
+.contact-form {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form .form-group {
+  margin-bottom: 12px;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.contact-form input:focus {
+  outline: none;
+  border-color: #1A2A44;
+  box-shadow: 0 0 0 2px rgba(26, 42, 68, 0.1);
+  background: white;
+}
+
+.contact-form .submit-button {
+  width: 100%;
+  padding: 12px;
+  background: #1A2A44;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.contact-form .submit-button:hover {
+  background: #D4AF37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 42, 68, 0.15);
+}
+
+.contact-form .submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(26, 42, 68, 0.1);
+}
+
+/* Responsive Design for Contact Form */
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 12px;
+  }
+
+  .contact-form input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .contact-form .submit-button {
+    padding: 10px;
+  }
+} 

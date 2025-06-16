@@ -1,0 +1,231 @@
+.expertiseSection {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+}
+
+.expertiseContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.expertiseContent h2 {
+  color: #1A2A44;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.expertiseContent > p {
+  color: #666;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.expertiseTabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.tabButton {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tabButton.active {
+  color: #D4AF37;
+  border-bottom-color: #D4AF37;
+}
+
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.expertiseCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.expertiseCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.expertiseCard h3 {
+  color: #1A2A44;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.expertiseCard p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Section Témoignages */
+.testimonialsSection {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.testimonialsHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonialsHeader h2 {
+  color: #1A2A44;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  color: #D4AF37;
+  font-size: 1.5rem;
+}
+
+.ratingText {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonialCard {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.testimonialText {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorInfo h4 {
+  color: #1A2A44;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.authorInfo p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Section Accompagnement */
+.accompanimentSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%);
+  color: white;
+}
+
+.accompanimentContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.accompanimentContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #D4AF37;
+}
+
+.accompanimentContent p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: #D4AF37;
+  color: #1A2A44;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .expertiseSection,
+  .testimonialsSection,
+  .accompanimentSection {
+    padding: 3rem 1rem;
+  }
+
+  .expertiseContent h2,
+  .testimonialsHeader h2,
+  .accompanimentContent h2 {
+    font-size: 2rem;
+  }
+
+  .expertiseContent > p,
+  .accompanimentContent p {
+    font-size: 1.1rem;
+  }
+
+  .expertiseTabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabButton {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+  }
+} 

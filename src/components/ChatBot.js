@@ -24,7 +24,7 @@ const ChatBot = () => {
       validation: (value) => !isNaN(value) && value > 0 && value < 120
     },
     {
-      question: "Merci. Quelle est votre adresse email ?",
+      question: "Merci. Quelle est votre adresse e-mail ?",
       field: 'email',
       validation: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     },
@@ -43,11 +43,11 @@ const ChatBot = () => {
       question: "Quel est votre budget d'investissement approximatif ?",
       field: 'budget',
       options: [
-        "Moins de 50 000€",
-        "50 000€ - 100 000€",
-        "100 000€ - 250 000€",
-        "250 000€ - 500 000€",
-        "Plus de 500 000€"
+        "Moins de 50 000 €",
+        "50 000 € - 100 000 €",
+        "100 000 € - 250 000 €",
+        "250 000 € - 500 000 €",
+        "Plus de 500 000 €"
       ]
     }
   ];
@@ -112,7 +112,7 @@ const ChatBot = () => {
           // Handle invalid input
           setTimeout(() => {
             setMessages(prev => [...prev, {
-              text: "Je suis désolé, cette réponse n'est pas valide. Pourriez-vous réessayer ?",
+              text: "Je suis désolée, cette réponse n'est pas valide. Pourriez-vous réessayer ?",
               sender: 'bot'
             }]);
           }, 1000);
