@@ -1,0 +1,256 @@
+.actualites {
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  padding: 0 20px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  background: #f8f9fa;
+  color: #1A2A44;
+  margin-bottom: 60px;
+  border-radius: 0 0 20px 20px;
+}
+
+.heroContent {
+  flex: 1;
+}
+
+.heroContent h1 {
+  font-size: 2.5rem;
+  color: #1A2A44;
+  margin-bottom: 1.5rem;
+}
+
+.heroContent p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.heroImageContainer {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  animation: float 3s ease-in-out infinite;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.filters {
+  margin-bottom: 40px;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.categoryButton {
+  background: white;
+  color: #1A2A44;
+  border: 2px solid #D4AF37;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.categoryButton:hover,
+.categoryButton.active {
+  background: #D4AF37;
+  color: #1A2A44;
+}
+
+.articles {
+  margin-bottom: 60px;
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.articleCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.articleCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.articleImage {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.articleImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleCategory {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #D4AF37;
+  color: #1A2A44;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.articleContent {
+  padding: 25px;
+}
+
+.articleMeta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.articleDate,
+.articleReadTime {
+  display: flex;
+  align-items: center;
+}
+
+.articleContent h3 {
+  font-size: 1.3rem;
+  color: #1A2A44;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.articleContent p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.readMore {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.readMore:hover {
+  color: #B8941F;
+}
+
+.newsletter {
+  background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.newsletter h2 {
+  font-size: 2rem;
+  color: #D4AF37;
+  margin-bottom: 15px;
+}
+
+.newsletter p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.newsletterForm {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+.newsletterForm input {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.newsletterForm button {
+  background: #D4AF37;
+  color: #1A2A44;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletterForm button:hover {
+  background: #B8941F;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .heroContent {
+    text-align: center;
+  }
+
+  .articlesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletterForm {
+    flex-direction: column;
+  }
+
+  .categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+} 

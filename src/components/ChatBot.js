@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './ChatBot.css';
-import logo1 from '../assets/logo1.png';
+import moneyGrowth from '../assets/money-growth_12028691.png';
 
-const ChatBot = () => {
+const ChatBot = ({ avatar }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
@@ -131,8 +131,13 @@ const ChatBot = () => {
       
       <div className="chatbot-container">
         <div className="chatbot-header">
-          <img src={logo1} alt="Azalée Patrimoine" className="chatbot-logo" />
-          <h3>Assistance Azalée</h3>
+          {avatar && (
+            <div className="chatbot-header-bg" style={{backgroundImage: `url('${avatar}')`}} />
+          )}
+          <div className="chatbot-header-content">
+            <img src={avatar || moneyGrowth} alt="Azalée Patrimoine" className="chatbot-logo" />
+            <h3>Assistance Azalée</h3>
+          </div>
         </div>
         
         <div className="chatbot-messages">

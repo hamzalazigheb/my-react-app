@@ -4,22 +4,39 @@ import Link from 'next/link';
 
 const slides = [
   {
-    title: "Votre Patrimoine, Notre Expertise",
-    description: "Depuis 30 ans, nous sculptons l'avenir financier de ceux qui exigent l'excellence. Laissez-nous révéler le potentiel insoupçonné de votre patrimoine.",
-    image: "/images/paris_desti_slider.webp",
-    bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)"
+    title: "Audit Patrimonial",
+    description: "Analysez votre situation financière actuelle avec notre audit patrimonial complet. Nous identifions vos forces, vos faiblesses et les opportunités d'optimisation pour votre avenir financier.",
+    icon: "/images/finance_9552251.png",
+    bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)",
+    link: "/audit-patrimonial"
   },
   {
-    title: "Solutions Sur-Mesure",
-    description: "Des stratégies d'investissement innovantes et personnalisées, conçues pour répondre aux enjeux uniques de chaque client. De l'épargne salariale aux investissements immobiliers.",
-    image: "/images/paris_desti_slider.webp",
-    bgColor: "linear-gradient(135deg, #2C3E50 0%, #1A2A44 100%)"
+    title: "Solutions de Projets",
+    description: "Transformez vos projets en réalité avec nos solutions personnalisées. De l'investissement immobilier à la préparation de retraite, nous vous accompagnons dans la concrétisation de vos objectifs.",
+    icon: "/images/apartment_6191268.png",
+    bgColor: "linear-gradient(135deg, #2C3E50 0%, #1A2A44 100%)",
+    link: "/solutions-projets"
   },
   {
-    title: "Accompagnement Premium",
-    description: "Un partenariat exclusif basé sur la confiance et l'excellence. Notre équipe d'experts vous accompagne à chaque étape de votre projet patrimonial.",
-    image: "/images/paris_desti_slider.webp",
-    bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)"
+    title: "Gestion de Patrimonial sur Mesure",
+    description: "Bénéficiez d'une gestion patrimoniale adaptée à votre profil et vos objectifs. Notre approche personnalisée vous garantit un accompagnement exclusif et des résultats optimaux.",
+    icon: "/images/placement_7870830.png",
+    bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)",
+    link: "/gestion-patrimoniale"
+  },
+  {
+    title: "Partenaires",
+    description: "Découvrez notre réseau de partenaires de confiance, sélectionnés pour leur expertise et leur qualité de service. Ensemble, nous vous offrons les meilleures solutions du marché.",
+    icon: "/images/deal_914022.png",
+    bgColor: "linear-gradient(135deg, #2C3E50 0%, #1A2A44 100%)",
+    link: "/partenaires"
+  },
+  {
+    title: "Outils Pédagogiques",
+    description: "Accédez à nos ressources éducatives et outils pédagogiques pour mieux comprendre les enjeux patrimoniaux. Formez-vous et prenez des décisions éclairées pour votre avenir financier.",
+    icon: "/images/location_8391003.png",
+    bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)",
+    link: "/outils-pedagogiques"
   }
 ];
 
@@ -62,20 +79,14 @@ export default function CarouselBand() {
           >
             <div className="carousel-content">
               <div className="carousel-text">
+                <div className="carousel-icon">
+                  <img src={slide.icon} alt={slide.title} />
+                </div>
                 <h2>{slide.title}</h2>
                 <p>{slide.description}</p>
-                <Link href="/contact" className="carousel-cta">
-                  Prendre rendez-vous
+                <Link href={slide.link} className="carousel-cta">
+                  En savoir plus
                 </Link>
-              </div>
-              <div className="carousel-image">
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  layout="fill"
-                  objectFit="cover"
-                  priority={index === 0}
-                />
               </div>
             </div>
           </div>

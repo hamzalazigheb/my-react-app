@@ -780,20 +780,27 @@ body {
 /* Styles de la section carrousel */
 .carousel-band {
   position: relative;
+  max-width: 1200px;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
+  height: 480px;
+  min-height: 320px;
   overflow: hidden;
+  margin: 2rem auto;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(26,42,68,0.08);
+  background: white;
 }
 
-/* Conteneur du carrousel */
 .carousel-container {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Styles des slides */
 .carousel-slide {
   position: absolute;
   top: 0;
@@ -801,51 +808,118 @@ body {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0 2rem;
+  z-index: 1;
+  transition: none;
+  pointer-events: none;
+  transform: scale(0.96);
+  animation: none;
 }
 
-/* Styles du slide actif */
 .carousel-slide.active {
   opacity: 1;
-  z-index: 1;
+  z-index: 2;
+  pointer-events: auto;
+  animation: zoomFadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+  transform: scale(1);
 }
 
-/* Contenu du carrousel */
+@keyframes zoomFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .carousel-content {
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(26,42,68,0.12);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  padding: 4rem 3rem;
+  max-height: 400px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Animation du contenu du slide actif */
-.carousel-slide.active .carousel-content {
-  opacity: 1;
-  transform: translateY(0);
+@media (max-width: 1024px) {
+  .carousel-band {
+    max-width: 98vw;
+    height: 320px;
+    min-height: 180px;
+  }
+  .carousel-content {
+    max-width: 98vw;
+    padding: 2rem 0.5rem;
+    max-height: 220px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    flex-direction: column;
+  }
 }
 
 /* Texte du carrousel */
 .carousel-text {
   color: white;
-  text-align: left;
+  text-align: center;
   opacity: 0;
   transform: translateX(-20px);
   transition: all 0.5s ease 0.2s;
+  max-width: 800px;
 }
 
 /* Animation du texte du slide actif */
 .carousel-slide.active .carousel-text {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Icône du carrousel */
+.carousel-icon {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease 0.1s;
+  display: flex;
+  justify-content: center;
+}
+
+/* Animation de l'icône du slide actif */
+.carousel-slide.active .carousel-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-icon img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.carousel-icon img:hover {
+  transform: scale(1.1);
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(30deg);
 }
 
 /* Image du carrousel */
@@ -940,17 +1014,8 @@ body {
 
 /* Media queries pour le carrousel */
 @media (max-width: 1024px) {
-  .carousel-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
   .carousel-text h2 {
     font-size: 2.5rem;
-  }
-
-  .carousel-image {
-    height: 300px;
   }
 }
 
@@ -965,8 +1030,12 @@ body {
   }
 
   .carousel-content {
-    padding: 2rem 1rem;
-    text-align: center;
+    padding: 0.4rem 0.5rem;
+    max-width: 98vw;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    max-height: 80px;
+    flex-direction: column;
   }
 
   .carousel-text {
@@ -981,13 +1050,9 @@ body {
     font-size: 1rem;
   }
 
-  .carousel-image {
-    height: 250px;
-    margin-top: 2rem;
-  }
-
-  .carousel-image:hover {
-    transform: none;
+  .carousel-icon img {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -1355,4 +1420,46 @@ body {
   .contact-form .submit-button {
     padding: 10px;
   }
+}
+
+/* Text Carousel Styles */
+.text-carousel-container {
+  background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
+  padding: 2rem 0;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.text-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+.text-carousel-cell {
+  width: auto;
+  text-align: center;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .text-carousel-cell {
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+  }
+  
+  .text-carousel {
+    padding: 0 1rem;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 } 

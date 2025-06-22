@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/ReduireImpots.module.css';
-import MoneyIcon from '../src/assets/money_12037483.png';
+import ChatBot from '../src/components/ChatBot';
 
 const ReduireImpots = () => {
   return (
@@ -17,7 +17,7 @@ const ReduireImpots = () => {
           <p>Chez Azalée Patrimoine, nous pensons qu'un impôt bien maîtrisé est un patrimoine qui progresse plus vite. Trop souvent, les contribuables subissent leur fiscalité sans savoir qu'il existe des leviers concrets, simples et parfaitement légaux pour réduire leur imposition, tout en servant des objectifs personnels : préparer la retraite, protéger la famille, investir intelligemment…</p>
         </div>
         <div className={styles.heroImageContainer}>
-          <img src={MoneyIcon.src} alt="Impôts Icon" className={styles.heroImage} />
+          <img src="/images/tax-deducted_14431175.png" alt="Réduction d'Impôts" className={styles.heroImage} />
         </div>
       </div>
 
@@ -131,6 +131,7 @@ const ReduireImpots = () => {
         <p>Ne laissez plus votre fiscalité être une contrainte. Avec Azalée Patrimoine, transformez-la en levier de croissance pour votre patrimoine.</p>
         <a href="/contact" className={styles.ctaButton}>Prenez rendez-vous dès maintenant</a>
       </div>
+      <ChatBot avatar={"/images/tax-deducted_14431175.png"} />
     </div>
   );
 };

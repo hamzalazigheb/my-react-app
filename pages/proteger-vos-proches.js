@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/ProtegerProches.module.css';
-import ManIcon from '../src/assets/man_14038016.png';
+import ChatBot from '../src/components/ChatBot';
 
 const ProtegerProches = () => {
   return (
@@ -17,7 +17,7 @@ const ProtegerProches = () => {
           <p>Personne n'aime penser au pire… et pourtant, prévoir l'imprévisible, c'est offrir à ceux qu'on aime un cadre sécurisé, des ressources stables et un avenir préservé.</p>
         </div>
         <div className={styles.heroImageContainer}>
-          <img src={ManIcon.src} alt="Man Icon" className={styles.heroImage} />
+          <img src="/images/life-insurance_10723210.png" alt="Life Insurance Protection" className={styles.heroImage} />
         </div>
       </div>
 
@@ -172,6 +172,7 @@ const ProtegerProches = () => {
         <p>Vous avez travaillé dur pour construire un patrimoine, sécuriser votre famille, et offrir un avenir à ceux que vous aimez. Notre rôle, c'est de détecter les forces de votre situation, de relever les failles potentielles et de transformer votre capital — immobilier, financier, professionnel — en véritable levier de protection et de transmission.</p>
         <a href="/contact" className={styles.ctaButton}>Prenez rendez-vous dès maintenant</a>
       </div>
+      <ChatBot avatar={"/images/life-insurance_10723210.png"} />
     </div>
   );
 };

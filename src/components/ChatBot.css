@@ -87,13 +87,38 @@
   gap: 10px;
   border-bottom: 2px solid #D4AF37;
   color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.chatbot-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  pointer-events: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.chatbot-header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .chatbot-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 3px solid #D4AF37;
+  box-shadow: 0 2px 8px rgba(26,42,68,0.13);
+  background: white;
 }
 
 .chatbot-header h3 {

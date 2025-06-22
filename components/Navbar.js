@@ -40,6 +40,14 @@ export default function Navbar() {
         { name: 'Partenaires', path: '/partenaires' },
         { name: 'Outils Pédagogiques', path: '/outils-pedagogiques' }
       ]
+    },
+    ressources: {
+      title: 'Ressources',
+      items: [
+        { name: 'Actualités', path: '/ressources/actualites' },
+        { name: 'Carrière', path: '/ressources/carriere' },
+        { name: 'FAQ', path: '/ressources/faq' }
+      ]
     }
   };
 
@@ -153,7 +161,29 @@ export default function Navbar() {
               ))}
             </ul>
           </li>
-          <li><Link href="/ressources">Ressources</Link></li>
+          <li className="dropdown">
+            <a 
+              href="#ressources"
+              onMouseEnter={() => setActiveDropdown('ressources')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              {content.ressources.title}
+              <span className="dropdown-arrow">▼</span>
+            </a>
+            <ul 
+              className={`dropdown-menu ${activeDropdown === 'ressources' ? 'active' : ''}`}
+              onMouseEnter={() => setActiveDropdown('ressources')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              {content.ressources.items.map((item, index) => (
+                <li key={index}>
+                  <Link href={item.path}>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </li>
           <li><Link href="/contact">Contact</Link></li>
         </div>
       </ul>

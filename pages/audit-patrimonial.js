@@ -6,6 +6,7 @@ import styles from '../styles/AuditPatrimonial.module.css';
 // import moneyGrowth from '../src/assets/money-growth_12028691.png'; // Removed unused import
 // import analyticsImage from '../src/assets/analytics_1734655.png'; // Removed unused import
 import homeImage from '../src/assets/home_14994708.png';
+import ChatBot from '../src/components/ChatBot';
 
 const AuditPatrimonial = () => {
   const [formData, setFormData] = useState({
@@ -282,6 +283,7 @@ const AuditPatrimonial = () => {
           Prenez rendez-vous dès maintenant
         </Link>
       </section>
+      <ChatBot avatar={homeImage.src || homeImage} />
     </div>
   );
 };

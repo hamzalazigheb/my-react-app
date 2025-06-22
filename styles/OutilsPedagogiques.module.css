@@ -5,22 +5,32 @@
 }
 
 .hero {
-  text-align: center;
-  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 5%;
+  background: #f8f9fa;
+  color: #1A2A44;
+  margin-bottom: 40px;
+  border-radius: 0 0 20px 20px;
+  margin-top: 120px;
 }
 
-.hero h1 {
+.heroContent {
+  flex: 1;
+}
+
+.heroContent h1 {
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: #1A2A44;
   margin-bottom: 1.5rem;
 }
 
-.hero p {
-  font-size: 1.2rem;
+.heroContent p {
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #666;
-  max-width: 800px;
-  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .section {
@@ -28,29 +38,33 @@
 }
 
 .section h2 {
-  color: #2c3e50;
   font-size: 2rem;
-  margin-bottom: 1rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
 }
 
 .sectionDescription {
   font-size: 1.1rem;
-  line-height: 1.6;
-  color: #666;
+  color: #495057;
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .outilsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin: 2rem 0;
 }
 
 .outilCard {
-  background-color: white;
+  background: white;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -59,95 +73,104 @@
 }
 
 .outilCard h3 {
-  color: #2c3e50;
   font-size: 1.3rem;
+  color: #2c3e50;
   margin-bottom: 1rem;
 }
 
 .outilCard p {
-  color: #666;
-  line-height: 1.5;
+  font-size: 1rem;
+  color: #495057;
   margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .outilLink {
   display: inline-block;
-  background-color: transparent;
-  color: #3498db;
-  border: 2px solid #3498db;
+  background: #007bff;
+  color: white;
   padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 0.5rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .outilLink:hover {
-  background-color: #3498db;
-  color: white;
+  background: #0056b3;
 }
 
 .cta {
   text-align: center;
-  background-color: #f8f9fa;
-  padding: 3rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  border-radius: 1rem;
+  margin-top: 4rem;
 }
 
 .cta h2 {
-  color: #2c3e50;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  border-bottom: none;
 }
 
 .cta p {
-  color: #666;
   font-size: 1.1rem;
-  line-height: 1.6;
   margin-bottom: 1.5rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  line-height: 1.6;
 }
 
 .ctaButton {
-  background-color: #3498db;
-  color: white;
+  display: inline-block;
+  background: white;
+  color: #007bff;
   padding: 1rem 2rem;
-  border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  text-decoration: none;
   font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .ctaButton:hover {
-  background-color: #2980b9;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-  .outilsPedagogiques {
-    padding: 1rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  .section h2 {
-    font-size: 1.8rem;
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 80px;
   }
 
   .outilsGrid {
     grid-template-columns: 1fr;
   }
 
-  .cta {
-    padding: 2rem;
+  .outilCard {
+    padding: 1.5rem;
   }
+}
+
+.heroImageContainer {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  animation: float 3s ease-in-out infinite;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 } 

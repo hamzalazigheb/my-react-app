@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import CarouselBand from '../components/CarouselBand';
-import InvestmentChatBot from '../components/InvestmentChatBot';
 import styles from '../styles/Expertises.module.css';
+
+const TextCarousel = dynamic(() => import('../components/TextCarousel'), {
+  ssr: false,
+});
+const InvestmentChatBot = dynamic(() => import('../components/InvestmentChatBot'), {
+  ssr: false,
+});
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('entreprises');
@@ -126,6 +133,9 @@ export default function Home() {
 
       {/* Section Carousel */}
       <CarouselBand />
+
+      {/* Section Text Carousel */}
+      <TextCarousel />
 
       {/* Section Expertises */}
       <section className={styles.expertiseSection}>
