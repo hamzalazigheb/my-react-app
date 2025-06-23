@@ -10,5 +10,17 @@
     "files": [
       "static/chunks/_pages-dir-browser_node_modules_next_dist_pages__error_js.js"
     ]
+  },
+  "pages\\index.js -> ../components/InvestmentChatBot": {
+    "id": "pages\\index.js -> ../components/InvestmentChatBot",
+    "files": [
+      "static/chunks/_pages-dir-browser_components_InvestmentChatBot_js.js"
+    ]
+  },
+  "pages\\index.js -> ../components/TextCarousel": {
+    "id": "pages\\index.js -> ../components/TextCarousel",
+    "files": [
+      "static/chunks/_pages-dir-browser_components_TextCarousel_js.js"
+    ]
   }
 }
