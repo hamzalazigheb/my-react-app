@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from './bien-placer-son-argent.module.css';
 import MoneyGrowthIcon from '../src/assets/money-growth_12028691.png';
+import ChatBot from '../src/components/ChatBot';
 
 export default function BienPlacerSonArgent() {
   return (
@@ -49,7 +50,9 @@ export default function BienPlacerSonArgent() {
             <p>Anticiper la baisse de revenus</p>
           </div>
           <div className={styles.situationCard}>
-            <div className={styles.situationIcon}>⏰</div>
+            <div className={styles.situationIcon}>
+              <img src="/images/money-back_6643108.png" alt="Créer des revenus passifs" style={{width:'2.2em',height:'2.2em',verticalAlign:'middle'}} />
+            </div>
             <h3>Créer des revenus passifs</h3>
             <p>Se libérer du temps</p>
           </div>
@@ -136,6 +139,7 @@ export default function BienPlacerSonArgent() {
           Prenez rendez-vous dès maintenant
         </Link>
       </div>
+      <ChatBot avatar={MoneyGrowthIcon.src} />
     </div>
   );
 } 

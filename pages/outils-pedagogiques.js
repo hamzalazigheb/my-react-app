@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/OutilsPedagogiques.module.css';
+import ChatBot from '../src/components/ChatBot';
 
 const OutilsPedagogiques = () => {
   const outils = [
@@ -99,11 +101,22 @@ const OutilsPedagogiques = () => {
 
       <div className={styles.outilsPedagogiques}>
         <div className={styles.hero}>
-          <h1>Outils pédagogiques</h1>
-          <p>
-            Nous mettons à votre disposition des fiches thématiques pour chaque situation étudiée.
-            Ex : Dois-je me PACSER pour protéger ma compagne ? Dois-je signer un contrat de mariage, si oui lequel ?
-          </p>
+          <div className={styles.heroContent}>
+            <h1>Outils pédagogiques</h1>
+            <p>
+              Nous mettons à votre disposition des fiches thématiques pour chaque situation étudiée.
+              Ex : Dois-je me PACSER pour protéger ma compagne ? Dois-je signer un contrat de mariage, si oui lequel ?
+            </p>
+          </div>
+          <div className={styles.heroImageContainer}>
+            <Image
+              src="/images/design_3516748.png"
+              alt="Outils Pédagogiques"
+              width={500}
+              height={300}
+              className={styles.heroImage}
+            />
+          </div>
         </div>
 
         {outils.map((section, index) => (
@@ -132,6 +145,7 @@ const OutilsPedagogiques = () => {
           </p>
           <button className={styles.ctaButton}>Prendre rendez-vous</button>
         </section>
+        <ChatBot avatar={"/images/design_3516748.png"} />
       </div>
     </>
   );

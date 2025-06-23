@@ -3,26 +3,30 @@ let contacts = [];
 let nextId = 1;
 
 // Charger les données au démarrage
-try {
-  const storedData = localStorage.getItem('chatbot_contacts');
-  if (storedData) {
-    const parsedData = JSON.parse(storedData);
-    contacts = parsedData.contacts || [];
-    nextId = parsedData.nextId || 1;
+if (typeof window !== 'undefined') {
+  try {
+    const storedData = localStorage.getItem('chatbot_contacts');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      contacts = parsedData.contacts || [];
+      nextId = parsedData.nextId || 1;
+    }
+  } catch (error) {
+    console.error('Erreur lors du chargement des contacts:', error);
   }
-} catch (error) {
-  console.error('Erreur lors du chargement des contacts:', error);
 }
 
 // Sauvegarder les données dans le localStorage
 const saveToStorage = () => {
-  try {
-    localStorage.setItem('chatbot_contacts', JSON.stringify({
-      contacts,
-      nextId
-    }));
-  } catch (error) {
-    console.error('Erreur lors de la sauvegarde des contacts:', error);
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem('chatbot_contacts', JSON.stringify({
+        contacts,
+        nextId
+      }));
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde des contacts:', error);
+    }
   }
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/SolutionsProjets.module.css';
+import ChatBot from '../src/components/ChatBot';
 
 const SolutionsProjets = () => {
   const projets = [
@@ -120,12 +122,23 @@ const SolutionsProjets = () => {
 
       <div className={styles.solutionsProjets}>
         <div className={styles.hero}>
-          <h1>Solutions Projets</h1>
-          <p>
-            Nous vous accompagnons dans la réalisation de vos projets patrimoniaux, 
-            qu\'ils soient immobiliers, financiers ou de protection. Découvrez nos 
-            solutions adaptées à vos objectifs.
-          </p>
+          <div className={styles.heroContent}>
+            <h1>Solutions Projets</h1>
+            <p>
+              Nous vous accompagnons dans la réalisation de vos projets patrimoniaux, 
+              qu'ils soient immobiliers, financiers ou de protection. Découvrez nos 
+              solutions adaptées à vos objectifs.
+            </p>
+          </div>
+          <div className={styles.heroImageContainer}>
+            <Image
+              src="/images/idea_10962016.png"
+              alt="Solutions Projets"
+              width={500}
+              height={300}
+              className={styles.heroImage}
+            />
+          </div>
         </div>
 
         {projets.map((section, index) => (
@@ -159,6 +172,7 @@ const SolutionsProjets = () => {
           </p>
           <button className={styles.ctaButton}>Prendre rendez-vous</button>
         </div>
+        <ChatBot avatar={"/images/idea_10962016.png"} />
       </div>
     </>
   );

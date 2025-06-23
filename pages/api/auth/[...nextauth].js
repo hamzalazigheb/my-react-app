@@ -1,9 +1,6 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-
-// Configuration temporaire - À remplacer par une vraie base de données
-const ADMIN_EMAIL = 'admin@azalee.fr';
-const ADMIN_PASSWORD = 'Admin123!'; // Mot de passe en clair pour le test
+import pool from '../../../utils/db';
 
 export default NextAuth({
   providers: [
@@ -14,24 +11,25 @@ export default NextAuth({
         password: { label: "Mot de passe", type: "password" }
       },
       async authorize(credentials) {
-        console.log('Tentative de connexion avec:', credentials.email);
-        
         if (!credentials?.email || !credentials?.password) {
-          console.log('Email ou mot de passe manquant');
           throw new Error('Email et mot de passe requis');
         }
 
-        // Vérification simple pour le test
-        if (credentials.email === ADMIN_EMAIL && credentials.password === ADMIN_PASSWORD) {
-          console.log('Authentification réussie');
+        // Query the database for the user
+        const [rows] = await pool.query(
+          'SELECT * FROM users WHERE email = ? AND password = ?',
+          [credentials.email, credentials.password]
+        );
+
+        if (rows.length > 0) {
+          const user = rows[0];
           return {
-            id: '1',
-            email: ADMIN_EMAIL,
-            name: 'Administrateur'
+            id: user.id,
+            email: user.email,
+            name: user.name
           };
         }
 
-        console.log('Authentification échouée');
         throw new Error('Email ou mot de passe incorrect');
       }
     })

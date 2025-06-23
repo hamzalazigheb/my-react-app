@@ -1,120 +1,114 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Partenaires.module.css';
+import ChatBot from '../src/components/ChatBot';
 
 const Partenaires = () => {
-  const partenaires = [
+  const partners = [
     {
-      categorie: 'Banques',
-      partenaires: [
+      category: "Banques & Assurances",
+      items: [
         {
-          nom: 'BNP Paribas',
-          logo: '/images/partenaires/bnp.png',
-          description: 'Banque universelle française, leader en Europe'
+          name: "BNP Paribas",
+          description: "Solutions bancaires et d'investissement",
+          logo: "/images/partners/bnp.png"
         },
         {
-          nom: 'Crédit Agricole',
-          logo: '/images/partenaires/ca.png',
-          description: 'Premier groupe bancaire français'
-        },
-        {
-          nom: 'Société Générale',
-          logo: '/images/partenaires/sg.png',
-          description: 'Banque française de premier plan'
+          name: "AXA",
+          description: "Solutions d'assurance et de protection",
+          logo: "/images/partners/axa.png"
         }
       ]
     },
     {
-      categorie: 'Assurances',
-      partenaires: [
+      category: "Immobilier",
+      items: [
         {
-          nom: 'AXA',
-          logo: '/images/partenaires/axa.png',
-          description: 'Leader mondial de l\'assurance'
+          name: "Foncia",
+          description: "Gestion locative et transaction",
+          logo: "/images/partners/foncia.png"
         },
         {
-          nom: 'Allianz',
-          logo: '/images/partenaires/allianz.png',
-          description: 'Groupe d\'assurance international'
-        },
-        {
-          nom: 'CNP Assurances',
-          logo: '/images/partenaires/cnp.png',
-          description: 'Assureur français spécialisé'
+          name: "SCPI",
+          description: "Investissement immobilier indirect",
+          logo: "/images/partners/scpi.png"
         }
       ]
     },
     {
-      categorie: 'Gestion d\'actifs',
-      partenaires: [
+      category: "Conseil & Expertise",
+      items: [
         {
-          nom: 'Amundi',
-          logo: '/images/partenaires/amundi.png',
-          description: 'Premier gestionnaire d\'actifs européen'
+          name: "Cabinet Juridique",
+          description: "Expertise juridique et fiscale",
+          logo: "/images/partners/juridique.png"
         },
         {
-          nom: 'Natixis IM',
-          logo: '/images/partenaires/natixis.png',
-          description: 'Gestionnaire d\'actifs international'
-        },
-        {
-          nom: 'La Française',
-          logo: '/images/partenaires/lafrancaise.png',
-          description: 'Gestionnaire d\'actifs indépendant'
+          name: "Expert-Comptable",
+          description: "Conseil et optimisation fiscale",
+          logo: "/images/partners/comptable.png"
         }
       ]
     }
   ];
 
   return (
-    <>
+    <div className={styles.partenaires}>
       <Head>
-        <title>Nos Partenaires - Azalée Patrimoine</title>
-        <meta name="description" content="Découvrez nos partenaires de confiance qui nous accompagnent dans la gestion de votre patrimoine." />
+        <title>Nos Partenaires | Azalée Patrimoine</title>
+        <meta name="description" content="Découvrez notre réseau de partenaires de confiance, sélectionnés pour leur expertise et leur qualité de service." />
       </Head>
 
-      <div className={styles.partenaires}>
-        <div className={styles.hero}>
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
           <h1>Nos Partenaires</h1>
           <p>
-            Nous travaillons avec des partenaires de confiance pour vous offrir 
-            les meilleures solutions patrimoniales. Découvrez notre réseau de 
-            partenaires sélectionnés pour leur expertise et leur fiabilité.
+            Nous collaborons avec des partenaires de confiance pour vous offrir
+            les meilleures solutions patrimoniales adaptées à vos besoins.
           </p>
         </div>
+        <div className={styles.heroImageContainer}>
+          <img
+            src="/images/deal_914022.png"
+            alt="Partenariats"
+            className={styles.heroImage}
+          />
+        </div>
+      </section>
 
-        {partenaires.map((section, index) => (
-          <div key={index} className={styles.section}>
-            <h2>{section.categorie}</h2>
-            <div className={styles.partenairesGrid}>
-              {section.partenaires.map((partenaire, pIndex) => (
-                <div key={pIndex} className={styles.partenaireCard}>
-                  <div className={styles.logoContainer}>
-                    <img 
-                      src={partenaire.logo} 
-                      alt={`Logo ${partenaire.nom}`}
-                      className={styles.logo}
-                    />
-                  </div>
-                  <h3>{partenaire.nom}</h3>
-                  <p>{partenaire.description}</p>
-                </div>
-              ))}
-            </div>
+      {partners.map((category, index) => (
+        <section key={index} className={styles.section}>
+          <h2>{category.category}</h2>
+          <div className={styles.partnersGrid}>
+            {category.items.map((partner, pIndex) => (
+              <div key={pIndex} className={styles.partnerCard}>
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={200}
+                  height={120}
+                  className={styles.partnerLogo}
+                />
+                <h3>{partner.name}</h3>
+                <p>{partner.description}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </section>
+      ))}
 
-        <div className={styles.cta}>
-          <h2>Devenir partenaire</h2>
-          <p>
-            Vous souhaitez devenir partenaire d'Azalée Patrimoine ? Nous sommes 
-            toujours à la recherche de nouveaux partenaires partageant nos valeurs 
-            et notre vision du conseil patrimonial.
-          </p>
-          <button className={styles.ctaButton}>Nous contacter</button>
-        </div>
-      </div>
-    </>
+      <section className={styles.cta}>
+        <h2>Rejoignez notre réseau de partenaires</h2>
+        <p>
+          Vous êtes un professionnel de confiance et souhaitez collaborer avec Azalée Patrimoine ?
+          Contactez-nous pour discuter des opportunités de partenariat.
+        </p>
+        <button className={styles.ctaButton}>Devenir Partenaire</button>
+      </section>
+      <ChatBot avatar={"/images/deal_914022.png"} />
+    </div>
   );
 };
 
