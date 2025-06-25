@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.47.0",
     "@prisma/client": "^6.9.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",

@@ -9,11 +9,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 60px 40px;
+  padding: 40px 20px;
   background: #f8f9fa;
   color: #1A2A44;
   margin-bottom: 60px;
   border-radius: 0 0 20px 20px;
+  margin-top: 100px;
 }
 
 .heroContent {
@@ -21,7 +22,7 @@
 }
 
 .heroContent h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #1A2A44;
   margin-bottom: 1.5rem;
 }
@@ -34,8 +35,8 @@
 }
 
 .heroImageContainer {
-  width: 300px;
-  height: 300px;
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +247,7 @@
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 40px 20px;
+    padding: 24px 5px;
   }
 
   .heroContent {
@@ -271,5 +272,10 @@
   .contactButtonSecondary {
     width: 100%;
     max-width: 300px;
+  }
+
+  .heroImageContainer {
+    width: 120px;
+    height: 120px;
   }
 } 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { store } from '../utils/store';
 import logoAzalee from '../src/assets/logo1.png'; // Import the logo directly
@@ -8,6 +8,9 @@ export default function InvestmentChatBot() {
   const [isOpen, setIsOpen] = useState(false); // Contrôle l'ouverture/fermeture
   const [showChatBot, setShowChatBot] = useState(false); // Contrôle l'affichage initial
   const [currentStep, setCurrentStep] = useState(0); // Suit l'étape actuelle de la conversation
+  
+  // Ref pour le scroll automatique
+  const messagesEndRef = useRef(null);
   
   // État pour stocker les informations de l'utilisateur
   const [userInfo, setUserInfo] = useState({
@@ -55,6 +58,16 @@ export default function InvestmentChatBot() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Fonction pour faire défiler automatiquement vers le bas
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Effet pour faire défiler automatiquement quand les messages changent
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   // Function to save data to MySQL database
   const saveToDatabase = async (data) => {
@@ -258,204 +271,213 @@ export default function InvestmentChatBot() {
       setMessages(prev => [...prev, userMessage]);
       const messageToProcess = inputMessage;
       setInputMessage('');
+      processMessage(messageToProcess);
+    }
+  };
 
-      // Step 1: Handle initial intent selection
-      if (currentStep === 0) {
-        if (inputMessage === "Obtenir une réponse rapide à une question patrimoniale") {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Pour vous orienter efficacement, que souhaitez-vous explorer aujourd'hui ?",
-              sender: 'bot',
-              options: intentOptions
-            }]);
-          }, 1000);
-          setCurrentStep(1);
-        } else if (inputMessage === "Être rappelé(e) par un conseiller") {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Parfait ! Pour qu'un conseiller puisse vous rappeler, j'ai besoin de quelques informations. Quel est votre prénom ?",
-              sender: 'bot'
-            }]);
-          }, 1000);
-          setCurrentStep(10); // Direct to callback flow
-        } else if (inputMessage === "Prendre un rendez-vous directement") {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Excellent ! Pour organiser votre rendez-vous, j'ai besoin de quelques informations. Quel est votre prénom ?",
-              sender: 'bot'
-            }]);
-          }, 1000);
-          setCurrentStep(20); // Direct to appointment flow
-        }
-      }
-      // Step 2: Handle intent selection
-      else if (currentStep === 1) {
-        setSelectedIntent(inputMessage);
-        const scenario = getScenarioResponse(inputMessage);
+  // Fonction pour traiter les messages (utilisée par les options et l'input)
+  const processMessage = (messageToProcess) => {
+    // Step 1: Handle initial intent selection
+    if (currentStep === 0) {
+      if (messageToProcess === "Obtenir une réponse rapide à une question patrimoniale") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: scenario.explanation,
+            text: "Pour vous orienter efficacement, que souhaitez-vous explorer aujourd'hui ?",
+            sender: 'bot',
+            options: intentOptions
+          }]);
+        }, 1000);
+        setCurrentStep(1);
+      } else if (messageToProcess === "Être rappelé(e) par un conseiller") {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Pour qu'un conseiller puisse vous rappeler, j'ai besoin de quelques informations. Quel est votre prénom ?",
             sender: 'bot'
           }]);
         }, 1000);
+        setCurrentStep(10); // Direct to callback flow
+      } else if (messageToProcess === "Prendre un rendez-vous directement") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: scenario.question,
-            sender: 'bot',
-            options: scenario.options
+            text: "Excellent ! Pour organiser votre rendez-vous, j'ai besoin de quelques informations. Quel est votre prénom ?",
+            sender: 'bot'
           }]);
-        }, 2000);
-        setCurrentStep(2);
+        }, 1000);
+        setCurrentStep(20); // Direct to appointment flow
       }
-      // Step 3: Handle scenario response
-      else if (currentStep === 2) {
-        setUserInfo(prev => ({ ...prev, objectif: inputMessage }));
+    }
+    // Step 2: Handle intent selection
+    else if (currentStep === 1) {
+      setSelectedIntent(messageToProcess);
+      const scenario = getScenarioResponse(messageToProcess);
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: scenario.explanation,
+          sender: 'bot'
+        }]);
+      }, 1000);
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: scenario.question,
+          sender: 'bot',
+          options: scenario.options
+        }]);
+      }, 2000);
+      setCurrentStep(2);
+    }
+    // Step 3: Handle scenario response
+    else if (currentStep === 2) {
+      setUserInfo(prev => ({ ...prev, objectif: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Parfait ! Pour mieux comprendre votre situation et vous apporter une préconisation personnalisée, j'aurais besoin de quelques informations confidentielles. Êtes-vous d'accord pour partager ces informations ?",
+          sender: 'bot',
+          options: ["Oui", "Non"]
+        }]);
+      }, 1000);
+      setCurrentStep(3);
+    }
+    // Step 3.5: Handle confirmation for confidential info
+    else if (currentStep === 3) {
+      if (messageToProcess === "Oui") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: "Parfait ! Pour mieux comprendre votre situation et vous apporter une préconisation personnalisée, j'aurais besoin de quelques informations confidentielles. " + profileQuestions[0].question,
+            text: "Merci pour votre confiance ! " + profileQuestions[0].question,
             sender: 'bot',
             options: profileQuestions[0].options
           }]);
         }, 1000);
-        setCurrentStep(3);
-      }
-      // Step 4-12: Handle profile questions
-      else if (currentStep >= 3 && currentStep < (3 + profileQuestions.length)) {
-        const questionIndex = currentStep - 3;
-        const question = profileQuestions[questionIndex];
-        
-        // --- VALIDATION LOGIC ---
-        let isValid = true;
-        // Check if the input is free text AND if a validation rule exists
-        if (!question.options && question.validation) {
-          isValid = question.validation(messageToProcess);
-        }
-
-        if (isValid) {
-          // --- If VALID, proceed ---
-          setUserInfo(prev => ({ ...prev, [question.field]: messageToProcess }));
-          
-          if (questionIndex < profileQuestions.length - 1) {
-            const nextQuestion = profileQuestions[questionIndex + 1];
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: nextQuestion.question,
-                sender: 'bot',
-                options: nextQuestion.options
-              }]);
-            }, 1000);
-            setCurrentStep(currentStep + 1);
-          } else {
-            // Profile complete, move to final engagement
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: "Je dispose maintenant des éléments essentiels pour vous apporter une préconisation personnalisée. Souhaitez-vous :",
-                sender: 'bot',
-                options: [
-                  "Recevoir un mini-bilan PDF gratuit",
-                  "Fixer un rendez-vous avec un conseiller patrimonial agréé Azalée",
-                  "Être recontacté(e) ultérieurement"
-                ]
-              }]);
-            }, 1000);
-            setCurrentStep(13);
-          }
-        } else {
-          // --- If INVALID, show error and wait ---
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: question.errorMessage || "Désolé, votre réponse n'est pas valide. Veuillez réessayer.",
-              sender: 'bot'
-            }]);
-          }, 1000);
-          // We DO NOT increment currentStep, so the bot asks the same question again.
-        }
-      }
-      // Step 13: Handle final engagement
-      else if (currentStep === 13) {
-        if (inputMessage === "Recevoir un mini-bilan PDF gratuit") {
-          // Save to database before concluding
-          saveToDatabase({ ...userInfo, intention: selectedIntent }).then(() => {
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: "Excellent choix ! Votre mini-bilan personnalisé sera généré et envoyé à votre adresse e-mail. Merci pour votre confiance !",
-                sender: 'bot'
-              }]);
-            }, 1000);
-            setIsConversationComplete(true);
-          }).catch(() => {
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: "Excellent choix ! Votre mini-bilan personnalisé sera généré et envoyé à votre adresse e-mail. Merci pour votre confiance !",
-                sender: 'bot'
-              }]);
-            }, 1000);
-            setIsConversationComplete(true);
-          });
-        } else if (inputMessage === "Fixer un rendez-vous avec un conseiller patrimonial agréé Azalée") {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Parfait ! Quel moment vous conviendrait le mieux ?",
-              sender: 'bot',
-              options: [
-                "Cette semaine",
-                "La semaine prochaine",
-                "Dans 2 semaines",
-                "Plus tard"
-              ]
-            }]);
-          }, 1000);
-          setCurrentStep(14);
-        } else if (inputMessage === "Être recontacté(e) ultérieurement") {
-          // Save to database before concluding
-          saveToDatabase({ ...userInfo, intention: selectedIntent }).then(() => {
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: "Pas de problème ! Un conseiller Azalée vous recontactera dans les prochains jours. Merci pour votre intérêt !",
-                sender: 'bot'
-              }]);
-            }, 1000);
-            setIsConversationComplete(true);
-          }).catch(() => {
-            setTimeout(() => {
-              setMessages(prev => [...prev, {
-                text: "Pas de problème ! Un conseiller Azalée vous recontactera dans les prochains jours. Merci pour votre intérêt !",
-                sender: 'bot'
-              }]);
-            }, 1000);
-            setIsConversationComplete(true);
-          });
-        }
-      }
-      // Step 14: Handle appointment scheduling
-      else if (currentStep === 14) {
-        setUserInfo(prev => ({ ...prev, dateRdv: inputMessage }));
+        setCurrentStep(4);
+      } else if (messageToProcess === "Non") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: "Quel canal préférez-vous pour ce rendez-vous ?",
+            text: "Pas de problème ! Que souhaitez-vous faire ?",
             sender: 'bot',
             options: [
-              "Téléphone",
-              "Visio",
-              "En agence"
+              "Prendre un rendez-vous directement",
+              "Être rappelé(e) par un conseiller",
+              "Recevoir des informations par email"
             ]
           }]);
         }, 1000);
-        setCurrentStep(15);
+        setCurrentStep(100); // Special step for non-confidential options
       }
-      // Step 15: Handle channel selection
-      else if (currentStep === 15) {
-        setUserInfo(prev => ({ ...prev, canalPreference: inputMessage }));
+    }
+    // Step 100: Handle non-confidential options
+    else if (currentStep === 100) {
+      if (messageToProcess === "Prendre un rendez-vous directement") {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Excellent ! Pour organiser votre rendez-vous, j'ai besoin de quelques informations. Quel est votre prénom ?",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setCurrentStep(20); // Direct to appointment flow
+      } else if (messageToProcess === "Être rappelé(e) par un conseiller") {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Pour qu'un conseiller puisse vous rappeler, j'ai besoin de quelques informations. Quel est votre prénom ?",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setCurrentStep(10); // Direct to callback flow
+      } else if (messageToProcess === "Recevoir des informations par email") {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Quel est votre adresse email pour que nous puissions vous envoyer des informations personnalisées ?",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setCurrentStep(101); // Email collection flow
+      }
+    }
+    // Step 101: Handle email collection
+    else if (currentStep === 101) {
+      setUserInfo(prev => ({ ...prev, email: messageToProcess }));
+      
+      // Save to database with minimal info
+      saveToDatabase({ 
+        ...userInfo, 
+        intention: selectedIntent,
+        email: messageToProcess 
+      }).then(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Nous vous enverrons des informations personnalisées par email dans les plus brefs délais. Merci pour votre intérêt !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      }).catch(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Nous vous enverrons des informations personnalisées par email dans les plus brefs délais. Merci pour votre intérêt !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      });
+    }
+    // Step 4-12: Handle profile questions (renumbered from 3 to 4)
+    else if (currentStep >= 4 && currentStep < (4 + profileQuestions.length)) {
+      const questionIndex = currentStep - 4;
+      const question = profileQuestions[questionIndex];
+      
+      // --- VALIDATION LOGIC ---
+      let isValid = true;
+      // Check if the input is free text AND if a validation rule exists
+      if (!question.options && question.validation) {
+        isValid = question.validation(messageToProcess);
+      }
+
+      if (isValid) {
+        // --- If VALID, proceed ---
+        setUserInfo(prev => ({ ...prev, [question.field]: messageToProcess }));
         
-        // Save to database
-        saveToDatabase({ 
-          ...userInfo, 
-          intention: selectedIntent,
-          canalPreference: inputMessage 
-        }).then(() => {
+        if (questionIndex < profileQuestions.length - 1) {
+          const nextQuestion = profileQuestions[questionIndex + 1];
           setTimeout(() => {
             setMessages(prev => [...prev, {
-              text: "Parfait, c'est noté ! Un conseiller Azalée vous contactera au moment prévu. Merci pour votre confiance et à très bientôt !",
+              text: nextQuestion.question,
+              sender: 'bot',
+              options: nextQuestion.options
+            }]);
+          }, 1000);
+          setCurrentStep(currentStep + 1);
+        } else {
+          // Profile complete, move to final engagement
+          setTimeout(() => {
+            setMessages(prev => [...prev, {
+              text: "Je dispose maintenant des éléments essentiels pour vous apporter une préconisation personnalisée. Souhaitez-vous :",
+              sender: 'bot',
+              options: [
+                "Recevoir un mini-bilan PDF gratuit",
+                "Fixer un rendez-vous avec un conseiller patrimonial agréé Azalée",
+                "Être recontacté(e) ultérieurement"
+              ]
+            }]);
+          }, 1000);
+          setCurrentStep(13);
+        }
+      } else {
+        // --- If INVALID, show error and wait ---
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: question.errorMessage || "Désolé, votre réponse n'est pas valide. Veuillez réessayer.",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        // We DO NOT increment currentStep, so the bot asks the same question again.
+      }
+    }
+    // Step 13: Handle final engagement
+    else if (currentStep === 13) {
+      if (messageToProcess === "Recevoir un mini-bilan PDF gratuit") {
+        // Save to database before concluding
+        saveToDatabase({ ...userInfo, intention: selectedIntent }).then(() => {
+          setTimeout(() => {
+            setMessages(prev => [...prev, {
+              text: "Excellent choix ! Votre mini-bilan personnalisé sera généré et envoyé à votre adresse e-mail. Merci pour votre confiance !",
               sender: 'bot'
             }]);
           }, 1000);
@@ -463,98 +485,174 @@ export default function InvestmentChatBot() {
         }).catch(() => {
           setTimeout(() => {
             setMessages(prev => [...prev, {
-              text: "Parfait, c'est noté ! Un conseiller Azalée vous contactera au moment prévu. Merci pour votre confiance et à très bientôt !",
+              text: "Excellent choix ! Votre mini-bilan personnalisé sera généré et envoyé à votre adresse e-mail. Merci pour votre confiance !",
               sender: 'bot'
             }]);
           }, 1000);
           setIsConversationComplete(true);
         });
-      }
-      // Handle direct callback flow
-      else if (currentStep === 10) {
-        setUserInfo(prev => ({ ...prev, prenom: inputMessage }));
+      } else if (messageToProcess === "Fixer un rendez-vous avec un conseiller patrimonial agréé Azalée") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: "Merci ! Quel est votre nom de famille ?",
-            sender: 'bot'
-          }]);
-        }, 1000);
-        setCurrentStep(10.5);
-      }
-      else if (currentStep === 10.5) {
-        setUserInfo(prev => ({ ...prev, nom: inputMessage }));
-        setTimeout(() => {
-          setMessages(prev => [...prev, {
-            text: "Merci ! Quel est votre numéro de téléphone pour que notre conseiller puisse vous rappeler ?",
-            sender: 'bot'
-          }]);
-        }, 1000);
-        setCurrentStep(10.6);
-      }
-      else if (currentStep === 10.6) {
-        setUserInfo(prev => ({ ...prev, telephone: inputMessage }));
-        
-        // Save to database
-        saveToDatabase({
-          ...userInfo,
-          prenom: userInfo.prenom,
-          nom: userInfo.nom,
-          telephone: inputMessage
-        }).then(() => {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Parfait ! Un conseiller Azalée vous rappellera dans les plus brefs délais. Merci pour votre confiance !",
-              sender: 'bot'
-            }]);
-          }, 1000);
-          setIsConversationComplete(true);
-        }).catch(() => {
-          setTimeout(() => {
-            setMessages(prev => [...prev, {
-              text: "Parfait ! Un conseiller Azalée vous rappellera dans les plus brefs délais. Merci pour votre confiance !",
-              sender: 'bot'
-            }]);
-          }, 1000);
-          setIsConversationComplete(true);
-        });
-      }
-      // Handle direct appointment flow
-      else if (currentStep === 20) {
-        setUserInfo(prev => ({ ...prev, prenom: inputMessage }));
-        setTimeout(() => {
-          setMessages(prev => [...prev, {
-            text: "Merci ! Quel est votre nom de famille ?",
-            sender: 'bot'
-          }]);
-        }, 1000);
-        setCurrentStep(20.5);
-      }
-      else if (currentStep === 20.5) {
-        setUserInfo(prev => ({ ...prev, nom: inputMessage }));
-        setTimeout(() => {
-          setMessages(prev => [...prev, {
-            text: "Merci ! Quel est votre numéro de téléphone ?",
-            sender: 'bot'
-          }]);
-        }, 1000);
-        setCurrentStep(20.6);
-      }
-      else if (currentStep === 20.6) {
-        setUserInfo(prev => ({ ...prev, telephone: inputMessage }));
-        setTimeout(() => {
-          setMessages(prev => [...prev, {
-            text: "Quel moment vous conviendrait le mieux pour un rendez-vous ?",
+            text: "Parfait ! Quel moment vous conviendrait le mieux ?",
             sender: 'bot',
             options: [
               "Cette semaine",
-              "La semaine prochaine", 
+              "La semaine prochaine",
               "Dans 2 semaines",
               "Plus tard"
             ]
           }]);
         }, 1000);
         setCurrentStep(14);
+      } else if (messageToProcess === "Être recontacté(e) ultérieurement") {
+        // Save to database before concluding
+        saveToDatabase({ ...userInfo, intention: selectedIntent }).then(() => {
+          setTimeout(() => {
+            setMessages(prev => [...prev, {
+              text: "Pas de problème ! Un conseiller Azalée vous recontactera dans les prochains jours. Merci pour votre intérêt !",
+              sender: 'bot'
+            }]);
+          }, 1000);
+          setIsConversationComplete(true);
+        }).catch(() => {
+          setTimeout(() => {
+            setMessages(prev => [...prev, {
+              text: "Pas de problème ! Un conseiller Azalée vous recontactera dans les prochains jours. Merci pour votre intérêt !",
+              sender: 'bot'
+            }]);
+          }, 1000);
+          setIsConversationComplete(true);
+        });
       }
+    }
+    // Step 14: Handle appointment scheduling
+    else if (currentStep === 14) {
+      setUserInfo(prev => ({ ...prev, dateRdv: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Quel canal préférez-vous pour ce rendez-vous ?",
+          sender: 'bot',
+          options: [
+            "Téléphone",
+            "Visio",
+            "En agence"
+          ]
+        }]);
+      }, 1000);
+      setCurrentStep(15);
+    }
+    // Step 15: Handle channel selection
+    else if (currentStep === 15) {
+      setUserInfo(prev => ({ ...prev, canalPreference: messageToProcess }));
+      
+      // Save to database
+      saveToDatabase({ 
+        ...userInfo, 
+        intention: selectedIntent,
+        canalPreference: messageToProcess 
+      }).then(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait, c'est noté ! Un conseiller Azalée vous contactera au moment prévu. Merci pour votre confiance et à très bientôt !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      }).catch(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait, c'est noté ! Un conseiller Azalée vous contactera au moment prévu. Merci pour votre confiance et à très bientôt !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      });
+    }
+    // Handle direct callback flow
+    else if (currentStep === 10) {
+      setUserInfo(prev => ({ ...prev, prenom: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Merci ! Quel est votre nom de famille ?",
+          sender: 'bot'
+        }]);
+      }, 1000);
+      setCurrentStep(10.5);
+    }
+    else if (currentStep === 10.5) {
+      setUserInfo(prev => ({ ...prev, nom: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Merci ! Quel est votre numéro de téléphone pour que notre conseiller puisse vous rappeler ?",
+          sender: 'bot'
+        }]);
+      }, 1000);
+      setCurrentStep(10.6);
+    }
+    else if (currentStep === 10.6) {
+      setUserInfo(prev => ({ ...prev, telephone: messageToProcess }));
+      
+      // Save to database
+      saveToDatabase({
+        ...userInfo,
+        prenom: userInfo.prenom,
+        nom: userInfo.nom,
+        telephone: messageToProcess
+      }).then(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Un conseiller Azalée vous rappellera dans les plus brefs délais. Merci pour votre confiance !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      }).catch(() => {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: "Parfait ! Un conseiller Azalée vous rappellera dans les plus brefs délais. Merci pour votre confiance !",
+            sender: 'bot'
+          }]);
+        }, 1000);
+        setIsConversationComplete(true);
+      });
+    }
+    // Handle direct appointment flow
+    else if (currentStep === 20) {
+      setUserInfo(prev => ({ ...prev, prenom: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Merci ! Quel est votre nom de famille ?",
+          sender: 'bot'
+        }]);
+      }, 1000);
+      setCurrentStep(20.5);
+    }
+    else if (currentStep === 20.5) {
+      setUserInfo(prev => ({ ...prev, nom: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Merci ! Quel est votre numéro de téléphone ?",
+          sender: 'bot'
+        }]);
+      }, 1000);
+      setCurrentStep(20.6);
+    }
+    else if (currentStep === 20.6) {
+      setUserInfo(prev => ({ ...prev, telephone: messageToProcess }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Quel moment vous conviendrait le mieux pour un rendez-vous ?",
+          sender: 'bot',
+          options: [
+            "Cette semaine",
+            "La semaine prochaine", 
+            "Dans 2 semaines",
+            "Plus tard"
+          ]
+        }]);
+      }, 1000);
+      setCurrentStep(14);
     }
   };
 
@@ -603,8 +701,10 @@ export default function InvestmentChatBot() {
                     <button
                       key={optIndex}
                       onClick={() => {
-                        setInputMessage(option);
-                        handleSubmit({ preventDefault: () => {}, target: null });
+                        // Traiter directement l'option sans passer par l'input
+                        const userMessage = { text: option, sender: 'user' };
+                        setMessages(prev => [...prev, userMessage]);
+                        processMessage(option);
                       }}
                       className="option-button"
                     >
@@ -623,6 +723,8 @@ export default function InvestmentChatBot() {
               </button>
             </div>
           )}
+          {/* Référence pour le scroll automatique */}
+          <div ref={messagesEndRef} />
         </div>
         
         {/* Formulaire de saisie */}
@@ -634,7 +736,7 @@ export default function InvestmentChatBot() {
             placeholder="Écrivez votre message..."
           />
           <button type="submit">
-            Envoyer
+            ➤
           </button>
         </form>
       </div>

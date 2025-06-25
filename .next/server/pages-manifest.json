@@ -2,7 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/cms/chatbot-data": "pages/cms/chatbot-data.js",
+  "/": "pages/index.js",
+  "/cms": "pages/cms.js",
+  "/api/chatbot-contacts": "pages/api/chatbot-contacts.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/api/chatbot-submit": "pages/api/chatbot-submit.js",
-  "/": "pages/index.js"
+  "/api/update-contact-status": "pages/api/update-contact-status.js"
 }

@@ -21,14 +21,15 @@ export default async function handler(req, res) {
       canal_preference,
       date_rdv,
       telephone,
-      email
+      email,
+      source
     } = req.body;
 
     // Validate required fields
-    if (!nom || !prenom || !age || !situation_matrimoniale || !enfants || !situation_professionnelle || !tmi) {
+    if (!nom || !prenom || !age || !situation_matrimoniale || !enfants || !tmi) {
       return res.status(400).json({ 
         message: 'Missing required fields',
-        required: ['nom', 'prenom', 'age', 'situation_matrimoniale', 'enfants', 'situation_professionnelle', 'tmi']
+        required: ['nom', 'prenom', 'age', 'situation_matrimoniale', 'enfants', 'tmi']
       });
     }
 
@@ -37,15 +38,15 @@ export default async function handler(req, res) {
       `INSERT INTO chatbotacceuil (
         nom, prenom, age, situation_matrimoniale, enfants, 
         situation_professionnelle, tmi, placements_actuels, budget_projet,
-        intention, objectif, canal_preference, date_rdv, telephone, email
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        intention, objectif, canal_preference, date_rdv, telephone, email, source
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         nom,
         prenom,
         age,
         situation_matrimoniale,
         enfants,
-        situation_professionnelle,
+        situation_professionnelle || null,
         tmi,
         placements_actuels || null,
         budget_projet || null,
@@ -54,7 +55,8 @@ export default async function handler(req, res) {
         canal_preference || null,
         date_rdv || null,
         telephone || null,
-        email || null
+        email || null,
+        source || 'chatbot_acceuil'
       ]
     );
 

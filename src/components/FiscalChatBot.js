@@ -7,14 +7,21 @@ const FiscalChatBot = () => {
   const [showChatBot, setShowChatBot] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
-    name: '',
+    nom: '',
+    prenom: '',
+    age: '',
     situation: '',
-    revenus: '',
-    objectif: '',
-    patrimoine: ''
+    enfants: '',
+    tmi: '',
+    placements: '',
+    contact: ''
   });
   const [messages, setMessages] = useState([
-    { text: "Bonjour ! Je suis Sarah, votre assistante spécialisée en optimisation fiscale. Je vais vous aider à découvrir nos solutions. Puis-je avoir votre nom ?", sender: 'bot' }
+    {
+      text: "Comment réduire mes impôts grâce à des investissements financiers ? Il existe de multiples moyens de réduire ses impôts mais cela dépend de combien de réduction on parle car les niches fiscales sont plafonnées. Toutefois, il existe des dispositifs malins à mettre en place mais qui dépendent de votre situation personnelle. Êtes-vous d'accord pour répondre à quelques questions sous couvert de la confidentialité ?",
+      sender: 'bot',
+      options: ["Oui", "Non"]
+    }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isConversationComplete, setIsConversationComplete] = useState(false);
@@ -22,69 +29,39 @@ const FiscalChatBot = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowChatBot(true);
-    }, 5000);
-
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  const conversationSteps = [
-    {
-      question: "Quelle est votre situation familiale actuelle ?",
-      field: 'situation',
-      options: [
-        "Célibataire",
-        "Marié(e)",
-        "Pacsé(e)",
-        "Divorcé(e)",
-        "Veuf/Veuve"
-      ]
-    },
-    {
-      question: "Quelle est votre tranche d'imposition approximative ?",
-      field: 'revenus',
-      options: [
-        "Tranche 0-11%",
-        "Tranche 11-30%",
-        "Tranche 30-41%",
-        "Tranche 41-45%",
-        "Je préfère ne pas le dire"
-      ]
-    },
-    {
-      question: "Quel est votre objectif principal en termes d'optimisation fiscale ?",
-      field: 'objectif',
-      options: [
-        "Réduire mon imposition",
-        "Optimiser la transmission de mon patrimoine",
-        "Investir dans l'immobilier",
-        "Protéger mes actifs",
-        "Autre"
-      ]
-    },
-    {
-      question: "Quel est votre patrimoine approximatif ?",
-      field: 'patrimoine',
-      options: [
-        "Moins de 100 000€",
-        "100 000€ - 500 000€",
-        "500 000€ - 1 000 000€",
-        "Plus de 1 000 000€",
-        "Je préfère ne pas le dire"
-      ]
-    }
+  // Les étapes de questions si l'utilisateur répond Oui
+  const questionSteps = [
+    { question: "Quel est votre nom ?", field: 'nom' },
+    { question: "Quel est votre prénom ?", field: 'prenom' },
+    { question: "Quel est votre âge ?", field: 'age', validation: (value) => !isNaN(value) && parseInt(value) > 0, errorMessage: "Veuillez entrer un âge valide (nombre supérieur à 0)." },
+    { question: "Quelle est votre situation matrimoniale ?", field: 'situation', options: ["Marié(e)", "Pacsé(e)", "Célibataire"] },
+    { question: "Avez-vous des enfants ?", field: 'enfants', options: ["Oui", "Non"] },
+    { question: "Quel est votre TMI (Taux Marginal d'Imposition) ?", field: 'tmi', options: ["11%", "30%", "41%", "45%", "Je ne sais pas"] },
+    { question: "Disposez-vous de placements financiers ou immobiliers ?", field: 'placements', options: ["Oui, financiers", "Oui, immobiliers", "Oui, les deux", "Non"] }
   ];
 
   const resetConversation = () => {
     setCurrentStep(0);
     setUserInfo({
-      name: '',
+      nom: '',
+      prenom: '',
+      age: '',
       situation: '',
-      revenus: '',
-      objectif: '',
-      patrimoine: ''
+      enfants: '',
+      tmi: '',
+      placements: '',
+      contact: ''
     });
     setMessages([
-      { text: "Bonjour ! Je suis Sarah, votre assistante spécialisée en optimisation fiscale. Je vais vous aider à découvrir nos solutions. Puis-je avoir votre nom ?", sender: 'bot' }
+      {
+        text: "Comment réduire mes impôts grâce à des investissements financiers ? Il existe de multiples moyens de réduire ses impôts mais cela dépend de combien de réduction on parle car les niches fiscales sont plafonnées. Toutefois, il existe des dispositifs malins à mettre en place mais qui dépendent de votre situation personnelle. Êtes-vous d'accord pour répondre à quelques questions sous couvert de la confidentialité ?",
+        sender: 'bot',
+        options: ["Oui", "Non"]
+      }
     ]);
     setInputMessage('');
     setIsConversationComplete(false);
@@ -92,57 +69,122 @@ const FiscalChatBot = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputMessage.trim()) {
-      // Add user message
-      const userMessage = { text: inputMessage, sender: 'user' };
-      setMessages(prev => [...prev, userMessage]);
+    if (!inputMessage.trim()) return;
+    const userMessage = { text: inputMessage, sender: 'user' };
+    setMessages(prev => [...prev, userMessage]);
 
-      // Process the response based on current step
-      if (currentStep === 0) {
-        // Handle name input
-        setUserInfo(prev => ({ ...prev, name: inputMessage }));
+    // Step 0: Oui/Non
+    if (currentStep === 0) {
+      if (inputMessage === "Oui") {
+        setTimeout(() => {
+          setMessages(prev => [...prev, { text: questionSteps[0].question, sender: 'bot' }]);
+        }, 800);
+        setCurrentStep(1);
+      } else if (inputMessage === "Non") {
         setTimeout(() => {
           setMessages(prev => [...prev, {
-            text: conversationSteps[0].question,
+            text: "Souhaitez-vous être contacté par un conseiller ou prendre rendez-vous directement ?",
+            sender: 'bot',
+            options: ["Être contacté par un conseiller", "Prendre rendez-vous directement"]
+          }]);
+        }, 800);
+        setCurrentStep(100); // branche contact
+      } else {
+        setTimeout(() => {
+          setMessages(prev => [...prev, { text: "Merci de répondre par Oui ou Non.", sender: 'bot', options: ["Oui", "Non"] }]);
+        }, 800);
+      }
+      setInputMessage('');
+      return;
+    }
+
+    // Questions personnalisées (si Oui)
+    if (currentStep > 0 && currentStep <= questionSteps.length) {
+      const stepIndex = currentStep - 1;
+      const step = questionSteps[stepIndex];
+      // Validation si présente
+      if (step.validation && !step.validation(inputMessage)) {
+        setTimeout(() => {
+          setMessages(prev => [...prev, { text: step.errorMessage || "Réponse invalide, veuillez réessayer.", sender: 'bot' }]);
+        }, 800);
+        setInputMessage('');
+        return;
+      }
+      setUserInfo(prev => ({ ...prev, [step.field]: inputMessage }));
+      if (stepIndex < questionSteps.length - 1) {
+        setTimeout(() => {
+          const nextStep = questionSteps[stepIndex + 1];
+          setMessages(prev => [...prev, {
+            text: nextStep.question,
+            sender: 'bot',
+            options: nextStep.options
+          }]);
+        }, 800);
+        setCurrentStep(currentStep + 1);
+      } else {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            text: `Merci ${userInfo.prenom ? userInfo.prenom : ''} ! Un conseiller va étudier votre profil et vous contactera rapidement.`,
             sender: 'bot'
           }]);
-        }, 1000);
-        setCurrentStep(1);
-      } else if (currentStep <= conversationSteps.length) {
-        const step = conversationSteps[currentStep - 1];
-        
-        // Store the answer
-        setUserInfo(prev => ({ ...prev, [step.field]: inputMessage }));
-
-        // Send next question or conclude
-        setTimeout(() => {
-          if (currentStep < conversationSteps.length) {
-            const nextQuestion = conversationSteps[currentStep];
-            let botMessage = {
-              text: nextQuestion.question,
-              sender: 'bot'
-            };
-            
-            // Add options if they exist
-            if (nextQuestion.options) {
-              botMessage.options = nextQuestion.options;
-            }
-            
-            setMessages(prev => [...prev, botMessage]);
-          } else {
-            // Conclude conversation with tax-specific message
-            setMessages(prev => [...prev, {
-              text: `Merci ${userInfo.name} ! En fonction de votre profil, nos experts en optimisation fiscale pourront vous proposer des solutions adaptées à votre situation. Un conseiller spécialisé vous contactera prochainement pour discuter des opportunités d'optimisation fiscale qui correspondent à vos objectifs.`,
-              sender: 'bot'
-            }]);
-            setIsConversationComplete(true);
-          }
-        }, 1000);
-        
-        setCurrentStep(currentStep + 1);
+        }, 800);
+        saveToDatabase({ ...userInfo });
+        setIsConversationComplete(true);
       }
-
       setInputMessage('');
+      return;
+    }
+
+    // Branche contact (si Non)
+    if (currentStep === 100) {
+      setUserInfo(prev => ({ ...prev, contact: inputMessage }));
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          text: "Merci ! Un conseiller va vous recontacter très prochainement.",
+          sender: 'bot'
+        }]);
+      }, 800);
+      saveToDatabase({ ...userInfo });
+      setIsConversationComplete(true);
+      setInputMessage('');
+      return;
+    }
+  };
+
+  // Fonction pour sauvegarder dans la base de données
+  const saveToDatabase = async (data) => {
+    try {
+      const response = await fetch('/api/chatbot-submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nom: data.nom || '',
+          prenom: data.prenom || '',
+          age: parseInt(data.age) || 0,
+          situation_matrimoniale: data.situation || '',
+          enfants: data.enfants || '',
+          situation_professionnelle: 'Autre', // valeur par défaut valide pour l'ENUM
+          tmi: data.tmi || '',
+          placements_actuels: data.placements || '',
+          budget_projet: '',
+          intention: '',
+          objectif: '',
+          canal_preference: '',
+          date_rdv: '',
+          telephone: '',
+          email: '',
+          source: 'chatbot_fiscal'
+        })
+      });
+      if (!response.ok) throw new Error('Erreur lors de la sauvegarde');
+      const result = await response.json();
+      console.log('FiscalChatBot data saved:', result);
+      return result;
+    } catch (error) {
+      console.error('Erreur sauvegarde FiscalChatBot:', error);
+      return null;
     }
   };
 

@@ -1426,8 +1426,12 @@ body {
 .text-carousel-container {
   background: linear-gradient(135deg, #1A2A44 0%, #2A3A54 100%);
   padding: 2rem 0;
-  margin: 2rem 0;
+  margin: 2rem auto;
   overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(26,42,68,0.08);
 }
 
 .text-carousel-track {
@@ -1456,6 +1460,20 @@ body {
   
   .text-carousel {
     padding: 0 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .text-carousel-container {
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-carousel-container {
+    max-width: 98vw;
+    padding: 1.5rem 0;
+    margin: 1rem auto;
   }
 }
 

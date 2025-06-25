@@ -4,6 +4,7 @@ model ChatbotContact {
   prenom    String
   email     String
   telephone String
+  pris_en_charge Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 } 

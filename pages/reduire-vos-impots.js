@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/ReduireImpots.module.css';
-import ChatBot from '../src/components/ChatBot';
+import FiscalChatBot from '../src/components/FiscalChatBot';
 
 const ReduireImpots = () => {
   return (
@@ -131,7 +131,7 @@ const ReduireImpots = () => {
         <p>Ne laissez plus votre fiscalité être une contrainte. Avec Azalée Patrimoine, transformez-la en levier de croissance pour votre patrimoine.</p>
         <a href="/contact" className={styles.ctaButton}>Prenez rendez-vous dès maintenant</a>
       </div>
-      <ChatBot avatar={"/images/tax-deducted_14431175.png"} />
+      <FiscalChatBot />
     </div>
   );
 };
