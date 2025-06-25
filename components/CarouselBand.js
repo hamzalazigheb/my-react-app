@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import LottieCanvas from './LottieCanvas';
 
 const slides = [
   {
     title: "Audit Patrimonial",
     description: "Analysez votre situation financière actuelle avec notre audit patrimonial complet. Nous identifions vos forces, vos faiblesses et les opportunités d'optimisation pour votre avenir financier.",
-    icon: "/images/finance_9552251.png",
+    lottie: "https://lottie.host/YOUR_ANIMATION_ID.lottie", // Remplace par l'URL de ton animation Lottie
     bgColor: "linear-gradient(135deg, #1A2A44 0%, #2C3E50 100%)",
     link: "/audit-patrimonial"
   },
@@ -68,29 +68,43 @@ export default function CarouselBand() {
   return (
     <section className="carousel-band">
       <div className="carousel-container">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
-            style={{
-              background: slide.bgColor,
-              opacity: isTransitioning ? 0 : 1
-            }}
-          >
-            <div className="carousel-content">
-              <div className="carousel-text">
-                <div className="carousel-icon">
-                  <img src={slide.icon} alt={slide.title} />
+        {slides.map((slide, index) => {
+          let slideClass = 'carousel-slide';
+          if (index === currentSlide) {
+            slideClass += ' active';
+          } else if (index < currentSlide) {
+            slideClass += ' inactive left';
+          } else {
+            slideClass += ' inactive';
+          }
+          return (
+            <div
+              key={index}
+              className={slideClass}
+              style={{
+                background: slide.bgColor,
+                opacity: isTransitioning ? 0 : 1
+              }}
+            >
+              <div className="carousel-content">
+                <div className="carousel-text">
+                  <div className="carousel-icon">
+                    {slide.lottie ? (
+                      <LottieCanvas src={slide.lottie} width={180} height={180} />
+                    ) : (
+                      <img src={slide.icon} alt={slide.title} style={{ width: 180, height: 180 }} />
+                    )}
+                  </div>
+                  <h2>{slide.title}</h2>
+                  <p>{slide.description}</p>
+                  <Link href={slide.link} className="carousel-cta">
+                    En savoir plus
+                  </Link>
                 </div>
-                <h2>{slide.title}</h2>
-                <p>{slide.description}</p>
-                <Link href={slide.link} className="carousel-cta">
-                  En savoir plus
-                </Link>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div className="carousel-indicators">
           {slides.map((_, index) => (
             <button

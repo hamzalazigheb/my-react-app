@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/PreparerRetraite.module.css';
-import ChatBot from '../src/components/ChatBot';
+import RetraiteChatBot from '../src/components/RetraiteChatBot';
 
 const PreparerRetraite = () => {
   return (
@@ -129,7 +129,7 @@ const PreparerRetraite = () => {
         <p>Chaque étape bien préparée, c'est une retraite plus sereine… et un patrimoine mieux maîtrisé.</p>
         <a href="/contact" className={styles.ctaButton}>Prenez rendez-vous dès maintenant</a>
       </div>
-      <ChatBot avatar={"/images/elderly_9442083.png"} />
+      <RetraiteChatBot />
     </div>
   );
 };

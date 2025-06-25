@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/FinancerEtudes.module.css';
 import MoneyGrowthIcon from '../src/assets/money-growth_12028691.png';
-import ChatBot from '../src/components/ChatBot';
+import TransmissionChatBot from '../src/components/TransmissionChatBot';
 
 const FinancerEtudesEnfants = () => {
   return (
@@ -198,7 +198,7 @@ const FinancerEtudesEnfants = () => {
         <p>Ne laissez pas le hasard décider de l'avenir de vos enfants. Prenez rendez-vous avec l'un de nos conseillers pour découvrir tout ce que vous pourriez mettre en place dès aujourd'hui.</p>
         <a href="/contact" className={styles.ctaButton}>Prenez rendez-vous dès maintenant</a>
       </div>
-      <ChatBot avatar={"/images/student_15175598.png"} />
+      <TransmissionChatBot />
     </div>
   );
 };

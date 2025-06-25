@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/AzaleePatrimoine.module.css';
 import contact from '../src/assets/contact.png';
 import phone from '../src/assets/phone_12153240.png';
@@ -10,6 +11,7 @@ import man from '../src/assets/man_14038016.png';
 import moneyGrowth from '../src/assets/money-growth_12028691.png';
 import azaleePatrimoine from '../src/assets/azalee-patrimoine.png';
 import logo1 from '../src/assets/logo1.png';
+import homeIcon from '../src/assets/home_14994708.png';
 
 const AzaleePatrimoine = () => {
   const history = [
@@ -61,70 +63,70 @@ const AzaleePatrimoine = () => {
         <section className={styles.bubbleSection}>
           <div className={styles.bubble} style={{position: 'relative'}}>
             <div className={styles.iconGrid}>
-              <div className={styles.iconItem}>
-                <img src="/images/money-back_6643108.png" alt="Money" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Remboursement</span>
-              </div>
-              <div className={styles.iconItem}>
+              <Link href="/reduire-vos-impots" className={styles.iconItem}>
+                <img src="/images/tax-deducted_14431175.png" alt="Réduction d'Impôts" className={styles.bubbleIcon} />
+                <span className={styles.iconLabel}>Réduire vos impôts</span>
+              </Link>
+              <Link href="/financer-etudes-enfants" className={styles.iconItem}>
                 <img src="/images/student_15175598.png" alt="Études" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Études</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Financer études</span>
+              </Link>
+              <Link href="/gestion-patrimoine-sur-mesure" className={styles.iconItem}>
                 <img src="/images/build_9199943.png" alt="Patrimoine" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Patrimoine</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Gestion patrimoine</span>
+              </Link>
+              <Link href="/ressources/carriere" className={styles.iconItem}>
                 <img src="/images/carrierepng.png" alt="Carrière" className={styles.bubbleIcon} />
                 <span className={styles.iconLabel}>Carrière</span>
-              </div>
-              <div className={styles.iconItem}>
+              </Link>
+              <Link href="/ressources/faq" className={styles.iconItem}>
                 <img src="/images/faq_17516656.png" alt="FAQ" className={styles.bubbleIcon} />
                 <span className={styles.iconLabel}>FAQ</span>
-              </div>
-              <div className={styles.iconItem}>
+              </Link>
+              <Link href="/ressources/actualites" className={styles.iconItem}>
                 <img src="/images/publication.png" alt="Publication" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Publication</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Actualités</span>
+              </Link>
+              <Link href="/solutions-projets" className={styles.iconItem}>
                 <img src="/images/idea_10962016.png" alt="Idée" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Idée</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Solutions projets</span>
+              </Link>
+              <Link href="/comprendre-placements" className={styles.iconItem}>
                 <img src="/images/learn_2861672.png" alt="Apprentissage" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Apprentissage</span>
-              </div>
-              <div className={styles.iconItem}>
-                <img src="/images/skill-development_11113026.png" alt="Compétence" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Compétence</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Comprendre placements</span>
+              </Link>
+              <Link href="/audit-patrimonial" className={styles.iconItem}>
+                <Image src={homeIcon} alt="Audit Patrimonial" width={74} height={74} className={styles.bubbleIcon} />
+                <span className={styles.iconLabel}>Audit patrimonial</span>
+              </Link>
+              <Link href="/outils-pedagogiques" className={styles.iconItem}>
                 <img src="/images/design_3516748.png" alt="Design" className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Design</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Outils pédagogiques</span>
+              </Link>
+              <Link href="/bien-placer-son-argent" className={styles.iconItem}>
                 <Image src={moneyGrowth} alt="Money Growth" width={74} height={74} className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Croissance</span>
-              </div>
-              <div className={styles.iconItem}>
-                <Image src={man} alt="Man" width={74} height={74} className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Homme</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Bien placer argent</span>
+              </Link>
+              <Link href="/proteger-vos-proches" className={styles.iconItem}>
+                <img src="/images/life-insurance_10723210.png" alt="Protection des proches" className={styles.bubbleIcon} />
+                <span className={styles.iconLabel}>Protéger proches</span>
+              </Link>
+              <Link href="/contact" className={styles.iconItem}>
                 <Image src={contact} alt="Contact" width={74} height={74} className={styles.bubbleIcon} />
                 <span className={styles.iconLabel}>Contact</span>
-              </div>
-              <div className={styles.iconItem}>
+              </Link>
+              <Link href="/contact" className={styles.iconItem}>
                 <Image src={phone} alt="Phone" width={74} height={74} className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Téléphone</span>
-              </div>
-              <div className={styles.iconItem}>
+                <span className={styles.iconLabel}>Contact</span>
+              </Link>
+              <Link href="/" className={styles.iconItem}>
                 <Image src={home} alt="Home" width={74} height={74} className={styles.bubbleIcon} />
                 <span className={styles.iconLabel}>Accueil</span>
-              </div>
-              <div className={styles.iconItem}>
+              </Link>
+              <Link href="/azalee-patrimoine" className={styles.iconItem}>
                 <Image src={logo1} alt="Logo" width={74} height={74} className={styles.bubbleIcon} />
-                <span className={styles.iconLabel}>Logo</span>
-              </div>
+                <span className={styles.iconLabel}>Qui sommes-nous</span>
+              </Link>
             </div>
           </div>
         </section>

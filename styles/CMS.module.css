@@ -565,4 +565,99 @@
   .callButton {
     text-align: center;
   }
+}
+
+/* Styles pour la barre de recherche et filtres */
+.searchAndFilters {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+}
+
+.searchBar input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.searchBar input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  min-width: 150px;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+/* Styles pour les cases à cocher */
+.statusCheckbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4299e1;
+}
+
+.statusLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.statusSection {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  border-left: 4px solid #4299e1;
+}
+
+/* Styles pour les contacts pris en charge */
+.contactsList tr.prisEnCharge {
+  background-color: #f0fff4;
+  border-left: 4px solid #48bb78;
+}
+
+.contactsList tr.prisEnCharge:hover {
+  background-color: #e6fffa;
+}
+
+/* Responsive pour les filtres */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+  
+  .filterSelect {
+    min-width: 100%;
+  }
 } 
